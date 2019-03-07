@@ -14,7 +14,10 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 /**
- * @author Thinkpad
+ * 作者： ch
+ * 时间： 2019/1/16 0016-上午 8:56
+ * 描述： app相关工具类
+ * 来源：
  */
 public class AppUtils {
 

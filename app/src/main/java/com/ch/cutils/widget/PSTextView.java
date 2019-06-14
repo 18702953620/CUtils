@@ -9,11 +9,11 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 import com.ch.cutils.R;
+
 
 /**
  * 作者： ch
@@ -61,6 +61,11 @@ public class PSTextView extends AppCompatTextView {
      */
     private int ps_focus_background_color;
 
+    /**
+     * 不可用时 颜色
+     */
+    private int ps_disable_background_color;
+
     public PSTextView(Context context) {
         super(context);
     }
@@ -80,17 +85,19 @@ public class PSTextView extends AppCompatTextView {
      * @param attrs
      */
     private void parseAttrs(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PSButton);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PSTextView);
         if (typedArray == null) return;
-        ps_border_width = typedArray.getDimensionPixelSize(R.styleable.PSButton_ps_border_width, 0);
-        ps_border_color = typedArray.getColor(R.styleable.PSButton_ps_border_color, ps_border_color);
-        ps_top_left_radius = typedArray.getDimensionPixelSize(R.styleable.PSButton_ps_top_left_radius, 0);
-        ps_top_right_radius = typedArray.getDimensionPixelSize(R.styleable.PSButton_ps_top_right_radius, 0);
-        ps_bottom_left_radius = typedArray.getDimensionPixelSize(R.styleable.PSButton_ps_bottom_left_radius, 0);
-        ps_bottom_right_radius = typedArray.getDimensionPixelSize(R.styleable.PSButton_ps_bottom_right_radius, 0);
-        ps_radius = typedArray.getDimensionPixelSize(R.styleable.PSButton_ps_radius, 0);
-        ps_btn_background_color = typedArray.getColor(R.styleable.PSButton_ps_background_color, ps_btn_background_color);
-        ps_focus_background_color = typedArray.getColor(R.styleable.PSButton_ps_focus_background_color, ps_btn_background_color);
+        ps_border_width = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_border_width, 0);
+        ps_border_color = typedArray.getColor(R.styleable.PSTextView_ps_border_color, ps_border_color);
+        ps_top_left_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_top_left_radius, 0);
+        ps_top_right_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_top_right_radius, 0);
+        ps_bottom_left_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_bottom_left_radius, 0);
+        ps_bottom_right_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_bottom_right_radius, 0);
+        ps_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_radius, 0);
+        ps_btn_background_color = typedArray.getColor(R.styleable.PSTextView_ps_background_color, ps_btn_background_color);
+        ps_focus_background_color = typedArray.getColor(R.styleable.PSTextView_ps_focus_background_color, ps_btn_background_color);
+        ps_disable_background_color = typedArray.getColor(R.styleable.PSTextView_ps_disable_background_color, ps_btn_background_color);
+
     }
 
     @Override
@@ -104,6 +111,14 @@ public class PSTextView extends AppCompatTextView {
     }
 
     private Drawable createDrawable() {
+        //不可用时
+        if (!isEnabled()) {
+            GradientDrawable disabledDrawable = new GradientDrawable();
+            initRadius(disabledDrawable);
+            disabledDrawable.setColor(ps_disable_background_color);
+            return disabledDrawable;
+        }
+
         //默认
         GradientDrawable defaultDrawable = new GradientDrawable();
         initRadius(defaultDrawable);
@@ -113,7 +128,7 @@ public class PSTextView extends AppCompatTextView {
         if (ps_border_width != 0) {
             defaultDrawable.setStroke(ps_border_width, ps_border_color);
         }
-
+        //有按下效果时
         if (ps_focus_background_color != 0) {
             //按下时
             GradientDrawable focusDrawable = new GradientDrawable();
@@ -121,6 +136,8 @@ public class PSTextView extends AppCompatTextView {
             focusDrawable.setColor(ps_focus_background_color);
             return getRippleDrawable(defaultDrawable, focusDrawable);
         }
+
+
         return defaultDrawable;
     }
 
@@ -138,6 +155,11 @@ public class PSTextView extends AppCompatTextView {
         }
     }
 
+    @Override
+    public void refreshDrawableState() {
+        super.refreshDrawableState();
+        refresh();
+    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private Drawable getRippleDrawable(Drawable defaultDrawable, Drawable focusDrawable) {

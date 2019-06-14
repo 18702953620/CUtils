@@ -19,7 +19,7 @@
         <attr name="radius" format="dimension" />
     </declare-styleable>
 
-    <declare-styleable name="PSButton">
+    <declare-styleable name="PSTextView">
 
         <!-- 描边 宽度 0为填充-->
         <attr name="ps_border_width" format="dimension" />
@@ -27,7 +27,6 @@
         <attr name="ps_border_color" format="color" />
         <!-- 填充 颜色-->
         <attr name="ps_background_color" format="color" />
-
         <!-- 圆角 -->
         <attr name="ps_radius" format="dimension" />
         <!-- 左上圆角-->
@@ -40,6 +39,31 @@
         <attr name="ps_bottom_right_radius" format="dimension" />
         <!-- focus 颜色-->
         <attr name="ps_focus_background_color" format="color" />
+        <!-- disabled 颜色-->
+        <attr name="ps_disable_background_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="PSButton">
+
+        <!-- 描边 宽度 0为填充-->
+        <attr name="ps_btn_border_width" format="dimension" />
+        <!-- 描边 颜色-->
+        <attr name="ps_btn_border_color" format="color" />
+        <!-- 填充 颜色-->
+        <attr name="ps_btn_background_color" format="color" />
+        <!-- 圆角 -->
+        <attr name="ps_btn_radius" format="dimension" />
+        <!-- 左上圆角-->
+        <attr name="ps_btn_top_left_radius" format="dimension" />
+        <!-- 右上圆角-->
+        <attr name="ps_btn_top_right_radius" format="dimension" />
+        <!-- 左下圆角-->
+        <attr name="ps_btn_bottom_left_radius" format="dimension" />
+        <!-- 右下圆角-->
+        <attr name="ps_btn_bottom_right_radius" format="dimension" />
+        <!-- focus 颜色-->
+        <attr name="ps_btn_focus_background_color" format="color" />
+        <!-- disabled 颜色-->
+        <attr name="ps_btn_disable_background_color" format="color" />
     </declare-styleable>
 
 </resources>

@@ -66,4 +66,33 @@
         <attr name="ps_btn_disable_background_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="TitleView">
+        <!-- 标题-->
+        <attr name="ps_title" format="string" />
+        <!-- 背景颜色-->
+        <attr name="ps_title_background_color" format="color" />
+        <!-- 右边文字-->
+        <attr name="ps_right_text" format="string" />
+        <!-- 右边按钮-->
+        <attr name="ps_right_res" format="reference" />
+        <!-- 返回键-->
+        <attr name="ps_back_res" format="reference" />
+        <!-- 右边文字颜色-->
+        <attr name="ps_right_text_color" format="color" />
+        <!-- 标题文字颜色-->
+        <attr name="ps_title_text_color" format="color" />
+        <!-- 标题文字大小-->
+        <attr name="ps_title_text_size" format="dimension" />
+        <!-- 右边文字大小-->
+        <attr name="ps_right_text_size" format="dimension" />
+        <!-- 是否需要返回键-->
+        <attr name="ps_need_back" format="boolean" />
+        <!-- 是否需要下间隔线-->
+        <attr name="ps_need_line" format="boolean" />
+        <!-- 间隔线颜色-->
+        <attr name="ps_line_color" format="color" />
+        <!-- 间隔线高度-->
+        <attr name="ps_line_height" format="dimension" />
+
+    </declare-styleable>
 </resources>

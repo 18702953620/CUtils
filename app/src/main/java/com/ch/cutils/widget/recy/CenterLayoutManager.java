@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
  * 时间： 2018/8/15 0015-下午 2:30
  * 描述： 平滑滚动
  * 来源：
+ * 使用：rvInfoTab.smoothScrollToPosition(position);
  */
 
 

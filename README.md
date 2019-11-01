@@ -30,3 +30,4 @@
 * TitleView 标题栏
 * PSButton 实现了圆角、描边、按下、不可用等状态
 * PSTextView 实现了圆角、描边等状态
+* AlignTextView 不等字数对齐

@@ -90,6 +90,8 @@ public class TitleView extends RelativeLayout {
      */
     private int lineColor;
     private LinearLayout rightLayout;
+    private TextView tvTitle;
+    private LinearLayout backLayout;
 
 
     public TitleView(Context context, AttributeSet attrs) {
@@ -115,7 +117,7 @@ public class TitleView extends RelativeLayout {
 
         if (needBack) {
             //需要返回键
-            LinearLayout backLayout = new LinearLayout(context);
+            backLayout = new LinearLayout(context);
 
             backLayout.setGravity(Gravity.CENTER);
 
@@ -142,7 +144,7 @@ public class TitleView extends RelativeLayout {
         }
 
 
-        TextView tvTitle = new TextView(context);
+        tvTitle = new TextView(context);
         tvTitle.setText(title);
         tvTitle.setTextSize(px2sp(getContext(), titleSize));
         tvTitle.setTextColor(titleTextColor);
@@ -246,6 +248,35 @@ public class TitleView extends RelativeLayout {
     public void addRightListener(OnClickListener listener) {
         if (rightLayout == null) return;
         rightLayout.setOnClickListener(listener);
+    }
+
+    /**
+     * 设置标题
+     *
+     * @param title
+     */
+    public void setTitle(String title) {
+        if (tvTitle == null) return;
+        tvTitle.setText(title);
+    }
+
+
+    /**
+     * 是否需要返回键
+     *
+     * @param needBack
+     */
+    public void needBack(boolean needBack) {
+        this.needBack = needBack;
+        if (needBack) {
+            if (null != backLayout) {
+                backLayout.setVisibility(VISIBLE);
+            }
+        } else {
+            if (null != backLayout) {
+                backLayout.setVisibility(INVISIBLE);
+            }
+        }
     }
 
 

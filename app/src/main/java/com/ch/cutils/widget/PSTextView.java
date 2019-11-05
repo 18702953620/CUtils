@@ -27,44 +27,44 @@ public class PSTextView extends AppCompatTextView {
     /**
      * 边框 宽度
      */
-    private int ps_border_width;
+    private int psBorderWidth;
     /**
      * 边框颜色
      */
-    private int ps_border_color = Color.TRANSPARENT;
+    private int psBorderColor = Color.TRANSPARENT;
     /**
      * 左上圆角
      */
-    private int ps_top_left_radius;
+    private int psTopLeftRadius;
     /**
      * 右上圆角
      */
-    private int ps_top_right_radius;
+    private int psTopRightRadius;
     /**
      * 左下圆角
      */
-    private int ps_bottom_left_radius;
+    private int psBottomLeftRadius;
     /**
      * 右下圆角
      */
-    private int ps_bottom_right_radius;
+    private int psBottomRightRadius;
     /**
      * 圆角
      */
-    private int ps_radius;
+    private int psRadius;
     /**
      * 填充颜色
      */
-    private int ps_btn_background_color = Color.TRANSPARENT;
+    private int psBtnBackgroundColor = Color.TRANSPARENT;
     /**
      * 焦点时颜色
      */
-    private int ps_focus_background_color;
+    private int psFocusBackgroundColor;
 
     /**
      * 不可用时 颜色
      */
-    private int ps_disable_background_color;
+    private int psDisableBackgroundColor;
 
     public PSTextView(Context context) {
         super(context);
@@ -80,24 +80,19 @@ public class PSTextView extends AppCompatTextView {
         parseAttrs(context, attrs);
     }
 
-    /**
-     * @param context
-     * @param attrs
-     */
     private void parseAttrs(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PSTextView);
-        if (typedArray == null) return;
-        ps_border_width = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_border_width, 0);
-        ps_border_color = typedArray.getColor(R.styleable.PSTextView_ps_border_color, ps_border_color);
-        ps_top_left_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_top_left_radius, 0);
-        ps_top_right_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_top_right_radius, 0);
-        ps_bottom_left_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_bottom_left_radius, 0);
-        ps_bottom_right_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_bottom_right_radius, 0);
-        ps_radius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_radius, 0);
-        ps_btn_background_color = typedArray.getColor(R.styleable.PSTextView_ps_background_color, ps_btn_background_color);
-        ps_focus_background_color = typedArray.getColor(R.styleable.PSTextView_ps_focus_background_color, ps_btn_background_color);
-        ps_disable_background_color = typedArray.getColor(R.styleable.PSTextView_ps_disable_background_color, ps_btn_background_color);
-
+        psBorderWidth = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_border_width, 0);
+        psBorderColor = typedArray.getColor(R.styleable.PSTextView_ps_border_color, psBorderColor);
+        psTopLeftRadius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_top_left_radius, 0);
+        psTopRightRadius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_top_right_radius, 0);
+        psBottomLeftRadius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_bottom_left_radius, 0);
+        psBottomRightRadius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_bottom_right_radius, 0);
+        psRadius = typedArray.getDimensionPixelSize(R.styleable.PSTextView_ps_radius, 0);
+        psBtnBackgroundColor = typedArray.getColor(R.styleable.PSTextView_ps_background_color, psBtnBackgroundColor);
+        psFocusBackgroundColor = typedArray.getColor(R.styleable.PSTextView_ps_focus_background_color, psBtnBackgroundColor);
+        psDisableBackgroundColor = typedArray.getColor(R.styleable.PSTextView_ps_disable_background_color, psBtnBackgroundColor);
+        typedArray.recycle();
     }
 
     @Override
@@ -115,7 +110,7 @@ public class PSTextView extends AppCompatTextView {
         if (!isEnabled()) {
             GradientDrawable disabledDrawable = new GradientDrawable();
             initRadius(disabledDrawable);
-            disabledDrawable.setColor(ps_disable_background_color);
+            disabledDrawable.setColor(psDisableBackgroundColor);
             return disabledDrawable;
         }
 
@@ -123,17 +118,17 @@ public class PSTextView extends AppCompatTextView {
         GradientDrawable defaultDrawable = new GradientDrawable();
         initRadius(defaultDrawable);
 
-        defaultDrawable.setColor(ps_btn_background_color);
+        defaultDrawable.setColor(psBtnBackgroundColor);
 
-        if (ps_border_width != 0) {
-            defaultDrawable.setStroke(ps_border_width, ps_border_color);
+        if (psBorderWidth != 0) {
+            defaultDrawable.setStroke(psBorderWidth, psBorderColor);
         }
         //有按下效果时
-        if (ps_focus_background_color != 0) {
+        if (psFocusBackgroundColor != 0) {
             //按下时
             GradientDrawable focusDrawable = new GradientDrawable();
             initRadius(focusDrawable);
-            focusDrawable.setColor(ps_focus_background_color);
+            focusDrawable.setColor(psFocusBackgroundColor);
             return getRippleDrawable(defaultDrawable, focusDrawable);
         }
 
@@ -143,15 +138,13 @@ public class PSTextView extends AppCompatTextView {
 
     /**
      * 设置圆角
-     *
-     * @param defaultDrawable
      */
     private void initRadius(GradientDrawable defaultDrawable) {
-        if (ps_radius > 0) {
-            defaultDrawable.setCornerRadius(ps_radius);
+        if (psRadius > 0) {
+            defaultDrawable.setCornerRadius(psRadius);
         } else {
-            defaultDrawable.setCornerRadii(new float[]{ps_top_left_radius, ps_top_left_radius, ps_top_right_radius, ps_top_right_radius,
-                    ps_bottom_right_radius, ps_bottom_right_radius, ps_bottom_left_radius, ps_bottom_left_radius});
+            defaultDrawable.setCornerRadii(new float[]{psTopLeftRadius, psTopLeftRadius, psTopRightRadius, psTopRightRadius,
+                    psBottomRightRadius, psBottomRightRadius, psBottomLeftRadius, psBottomLeftRadius});
         }
     }
 
@@ -163,17 +156,15 @@ public class PSTextView extends AppCompatTextView {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private Drawable getRippleDrawable(Drawable defaultDrawable, Drawable focusDrawable) {
-        return new RippleDrawable(ColorStateList.valueOf(ps_focus_background_color), defaultDrawable, focusDrawable);
+        return new RippleDrawable(ColorStateList.valueOf(psFocusBackgroundColor), defaultDrawable, focusDrawable);
     }
 
 
     private void updateBackground(Drawable background) {
-        if (background == null) return;
-        if (Build.VERSION.SDK_INT >= 16) {
-            this.setBackground(background);
-        } else {
-            this.setBackgroundDrawable(background);
+        if (background == null) {
+            return;
         }
+        this.setBackground(background);
     }
 
 

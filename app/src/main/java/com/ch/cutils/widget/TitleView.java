@@ -127,9 +127,7 @@ public class TitleView extends RelativeLayout {
             addBackListener(back);
 
             if (backDrawable != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    back.setBackground(backDrawable);
-                }
+                back.setBackground(backDrawable);
             } else {
                 back.setBackgroundResource(DEFAULT_BACK_RES);
             }
@@ -161,9 +159,7 @@ public class TitleView extends RelativeLayout {
 
         if (rightDrawable != null) {
             ImageView ivright = new ImageView(context);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                ivright.setBackground(rightDrawable);
-            }
+            ivright.setBackground(rightDrawable);
 
             rightLayout.addView(ivright);
         }
@@ -195,9 +191,7 @@ public class TitleView extends RelativeLayout {
             View view = new View(context);
             view.setBackgroundColor(lineColor);
             LayoutParams lineParams = new LayoutParams(LayoutParams.MATCH_PARENT, lineHeight);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                lineParams.addRule(RelativeLayout.ALIGN_PARENT_END);
-            }
+            lineParams.addRule(RelativeLayout.ALIGN_PARENT_END);
             addView(view, lineParams);
         }
     }
@@ -205,7 +199,6 @@ public class TitleView extends RelativeLayout {
     private void initAttr(AttributeSet attrs) {
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TitleView);
-        if (typedArray == null) return;
         title = typedArray.getString(R.styleable.TitleView_ps_title);
         rightText = typedArray.getString(R.styleable.TitleView_ps_right_text);
 
@@ -246,25 +239,25 @@ public class TitleView extends RelativeLayout {
      * 右边监听
      */
     public void addRightListener(OnClickListener listener) {
-        if (rightLayout == null) return;
+        if (rightLayout == null) {
+            return;
+        }
         rightLayout.setOnClickListener(listener);
     }
 
     /**
      * 设置标题
-     *
-     * @param title
      */
     public void setTitle(String title) {
-        if (tvTitle == null) return;
+        if (tvTitle == null) {
+            return;
+        }
         tvTitle.setText(title);
     }
 
 
     /**
      * 是否需要返回键
-     *
-     * @param needBack
      */
     public void needBack(boolean needBack) {
         this.needBack = needBack;

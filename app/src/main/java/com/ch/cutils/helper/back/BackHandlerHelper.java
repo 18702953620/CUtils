@@ -27,8 +27,6 @@ public class BackHandlerHelper {
     public static boolean handleBackPress(FragmentManager fragmentManager) {
         List<Fragment> fragments = fragmentManager.getFragments();
 
-        if (fragments == null) return false;
-
         for (int i = fragments.size() - 1; i >= 0; i--) {
             Fragment child = fragments.get(i);
 

@@ -18,6 +18,11 @@
         app:ps_border_width="1dp"
         app:ps_radius="4dp" />
 
+    <com.ch.cutils.widget.AlignTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="phone"
+        android:text="18702953620" />
 
     <com.ch.cutils.widget.AlignTextView
         android:layout_width="wrap_content"

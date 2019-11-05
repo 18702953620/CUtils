@@ -1,5 +1,6 @@
 package com.ch.cutils.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -15,12 +16,10 @@ import android.view.animation.BounceInterpolator;
 
 public class AttachButton extends android.support.v7.widget.AppCompatImageView {
 
-    private float mLastRawX;
-    private float mLastRawY;
-    private final String TAG = "AttachButton";
+    private float mLastRawx;
+    private float mLastRawy;
     private boolean isDrug = false;
     private int mRootMeasuredWidth;
-    private int mRootMeasuredHeight;
 
     public AttachButton(Context context) {
         super(context);
@@ -34,30 +33,33 @@ public class AttachButton extends android.support.v7.widget.AppCompatImageView {
         super(context, attrs, defStyleAttr);
     }
 
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         //当前手指的坐标
-        float mRawX = ev.getRawX();
-        float mRawY = ev.getRawY();
+        float mRawx = ev.getRawX();
+        float mRawy = ev.getRawY();
         ViewGroup mViewGroup = (ViewGroup) getParent();
 
         switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN://手指按下
+            //手指按下
+            case MotionEvent.ACTION_DOWN:
                 isDrug = false;
                 //记录按下的位置
-                mLastRawX = mRawX;
-                mLastRawY = mRawY;
+                mLastRawx = mRawx;
+                mLastRawy = mRawy;
 
                 if (mViewGroup != null) {
                     int[] location = new int[2];
                     mViewGroup.getLocationInWindow(location);
                     //获取父布局的高度
-                    mRootMeasuredHeight = mViewGroup.getMeasuredHeight();
                     mRootMeasuredWidth = mViewGroup.getMeasuredWidth();
                 }
 
                 break;
-            case MotionEvent.ACTION_MOVE://手指滑动
+            //手指滑动
+            case MotionEvent.ACTION_MOVE:
                 if (mViewGroup != null) {
                     int[] location = new int[2];
                     mViewGroup.getLocationInWindow(location);
@@ -65,49 +67,46 @@ public class AttachButton extends android.support.v7.widget.AppCompatImageView {
                     int mRootMeasuredHeight = mViewGroup.getMeasuredHeight();
                     mRootMeasuredWidth = mViewGroup.getMeasuredWidth();
                     //获取父布局顶点的坐标
-                    int mRootTopY = location[1];
-                    if (mRawX >= 0 && mRawX <= mRootMeasuredWidth && mRawY >= mRootTopY && mRawY <= (mRootMeasuredHeight + mRootTopY)) {
+                    int rootTopy = location[1];
+                    if (mRawx >= 0 && mRawx <= mRootMeasuredWidth && mRawy >= rootTopy && mRawy <= (mRootMeasuredHeight + rootTopy)) {
                         //手指X轴滑动距离
-                        float differenceValueX = mRawX - mLastRawX;
+                        float differenceValuex = mRawx - mLastRawx;
                         //手指Y轴滑动距离
-                        float differenceValueY = mRawY - mLastRawY;
+                        float differenceValuey = mRawy - mLastRawy;
                         //判断是否为拖动操作
                         if (!isDrug) {
-                            if (Math.sqrt(differenceValueX * differenceValueX + differenceValueY * differenceValueY) < 2) {
-                                isDrug = false;
-                            } else {
-                                isDrug = true;
-                            }
+                            isDrug = !(Math.sqrt(differenceValuex * differenceValuex + differenceValuey * differenceValuey) < 2);
                         }
                         //获取手指按下的距离与控件本身X轴的距离
-                        float ownX = getX();
+                        float ownx = getX();
                         //获取手指按下的距离与控件本身Y轴的距离
-                        float ownY = getY();
+                        float owny = getY();
                         //理论中X轴拖动的距离
-                        float endX = ownX + differenceValueX;
+                        float endx = ownx + differenceValuex;
                         //理论中Y轴拖动的距离
-                        float endY = ownY + differenceValueY;
+                        float endy = owny + differenceValuey;
                         //X轴可以拖动的最大距离
-                        float maxX = mRootMeasuredWidth - getWidth();
+                        float maxx = mRootMeasuredWidth - getWidth();
                         //Y轴可以拖动的最大距离
-                        float maxY = mRootMeasuredHeight - getHeight();
+                        float maxy = mRootMeasuredHeight - getHeight();
                         //X轴边界限制
-                        endX = endX < 0 ? 0 : endX > maxX ? maxX : endX;
+                        endx = endx < 0 ? 0 : endx > maxx ? maxx : endx;
                         //Y轴边界限制
-                        endY = endY < 0 ? 0 : endY > maxY ? maxY : endY;
+                        endy = endy < 0 ? 0 : endy > maxy ? maxy : endy;
                         //开始移动
-                        setX(endX);
-                        setY(endY);
+                        setX(endx);
+                        setY(endy);
                         //记录位置
-                        mLastRawX = mRawX;
-                        mLastRawY = mRawY;
+                        mLastRawx = mRawx;
+                        mLastRawy = mRawy;
                     }
                 }
                 break;
-            case MotionEvent.ACTION_UP://手指离开
+            //手指离开
+            case MotionEvent.ACTION_UP:
                 float center = mRootMeasuredWidth / 2;
                 //自动贴边
-                if (mLastRawX <= center) {
+                if (mLastRawx <= center) {
                     //向左贴边
                     AttachButton.this.animate()
                             .setInterpolator(new BounceInterpolator())
@@ -123,6 +122,7 @@ public class AttachButton extends android.support.v7.widget.AppCompatImageView {
                             .start();
                 }
                 break;
+            default:
         }
         //是否拦截事件
         return isDrug ? isDrug : super.onTouchEvent(ev);

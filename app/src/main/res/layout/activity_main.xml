@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <com.ch.cutils.widget.PSTextView
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="描边"
-        app:ps_border_color="@color/colorAccent"
-        app:ps_border_width="1dp"
-        app:ps_radius="4dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-    <com.ch.cutils.widget.AlignTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="18702953620" />
+        <com.h.cheng.base.widget.TitleView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ps_title="标题" />
 
-    <com.ch.cutils.widget.AlignTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我不" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <com.ch.cutils.widget.AlignTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我不是" />
-
-    <com.ch.cutils.widget.AlignTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我不是一" />
-
-    <com.ch.cutils.widget.AlignTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我不是一个" />
-
-    <com.ch.cutils.widget.AlignTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我不是一个人" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
 
-</LinearLayout>
+                <Button
+                    android:id="@+id/btn_simple_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="简单列表" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

@@ -17,6 +17,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:ps_need_back="false"
             app:ps_title="标题" />
 
         <androidx.core.widget.NestedScrollView
@@ -34,6 +35,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="简单列表" />
+
+                <Button
+                    android:id="@+id/btn_tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="tabs" />
+
+                <Button
+                    android:id="@+id/btn_tabs2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="tabs2" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

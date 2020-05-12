@@ -105,7 +105,9 @@ public abstract class BaseFragment<B extends ViewDataBinding, P extends BasePres
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
-        rootView = binding.getRoot();
+        if (binding != null) {
+            rootView = binding.getRoot();
+        }
         presenter = createPresenter();
         initView();
         addListener();
@@ -206,6 +208,9 @@ public abstract class BaseFragment<B extends ViewDataBinding, P extends BasePres
     }
 
     private void hideFileDialog() {
+    }
 
+    public View getRootView() {
+        return rootView;
     }
 }

@@ -27,7 +27,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
     @Override
     protected void addListener() {
         binding.btnSimpleList.setOnClickListener(this);
-
+        binding.btnTabs.setOnClickListener(this);
+        binding.btnTabs2.setOnClickListener(this);
     }
 
     @Override
@@ -36,6 +37,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
         switch (v.getId()) {
             case R.id.btn_simple_list:
                 intent.setClass(context, ListActivity.class);
+                break;
+            case R.id.btn_tabs:
+                intent.setClass(context, TabsActivity.class);
+                break;
+            case R.id.btn_tabs2:
+                intent.setClass(context, Tabs2Activity.class);
                 break;
 
             default:

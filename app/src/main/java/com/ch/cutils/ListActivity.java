@@ -2,7 +2,9 @@ package com.ch.cutils;
 
 import com.ch.cutils.adapter.ListAdapter;
 import com.ch.cutils.bean.ArticleModel;
+import com.ch.cutils.presenter.AppContract;
 import com.ch.cutils.presenter.AppPresenter;
+import com.ch.cutils.presenter.AppPresenter2;
 import com.ch.cutils.view.AppView;
 import com.h.cheng.base.base.BaseListActivity;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -15,13 +17,13 @@ import java.util.List;
  * @date 2020/4/27-17:53
  * desc
  */
-public class ListActivity extends BaseListActivity<AppPresenter> implements AppView {
+public class ListActivity extends BaseListActivity<AppPresenter2> implements AppContract.View {
 
     private ListAdapter listAdapter;
 
     @Override
-    protected AppPresenter createPresenter() {
-        return new AppPresenter(this);
+    protected AppPresenter2 createPresenter() {
+        return new AppPresenter2(this);
     }
 
     @Override
@@ -53,5 +55,10 @@ public class ListActivity extends BaseListActivity<AppPresenter> implements AppV
     @Override
     public void onGetListSucc(List<ArticleModel> o) {
         listAdapter.setNewData(o);
+    }
+
+    @Override
+    public void onGetInfoSucc(ArticleModel o) {
+
     }
 }

@@ -63,4 +63,9 @@ dependencies {
 
     //json处理
     api 'com.alibaba:fastjson:1.2.61'
+    //viewpager2
+    api "androidx.viewpager2:viewpager2:1.0.0"
+
+    //material
+    api 'com.google.android.material:material:1.2.0-alpha06'
 }

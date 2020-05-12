@@ -3,9 +3,13 @@ package com.h.cheng.base.base;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.h.cheng.base.R;
+import com.h.cheng.base.adapter.BaseTabs2Adapter;
 import com.h.cheng.base.adapter.BaseTabsAdapter;
 import com.h.cheng.base.api.BasePresenter;
+import com.h.cheng.base.databinding.AcBasePage2Binding;
 import com.h.cheng.base.databinding.AcBasePageBinding;
 
 import java.util.List;
@@ -15,9 +19,9 @@ import java.util.List;
  * @date 2020/4/27-19:09
  * desc
  */
-public abstract class BasePageActivity<P extends BasePresenter> extends BaseActivity<AcBasePageBinding, P> {
+public abstract class BasePage2Activity<P extends BasePresenter> extends BaseActivity<AcBasePage2Binding, P> {
 
-    private BaseTabsAdapter tabsAdapter;
+    private BaseTabs2Adapter tabsAdapter;
 
     /**
      * 创建  Fragment
@@ -34,6 +38,9 @@ public abstract class BasePageActivity<P extends BasePresenter> extends BaseActi
      */
     protected abstract List<String> buildTitles();
 
+
+    private TabLayoutMediator tabLayoutMediator;
+
     @Override
     protected P createPresenter() {
         return presenter;
@@ -41,19 +48,26 @@ public abstract class BasePageActivity<P extends BasePresenter> extends BaseActi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.ac_base_page;
+        return R.layout.ac_base_page2;
     }
 
     @Override
     protected void initView() {
-        tabsAdapter = new BaseTabsAdapter(getSupportFragmentManager(), buildTitles()) {
+        tabsAdapter = new BaseTabs2Adapter(this, buildTitles()) {
             @Override
             protected Fragment getFragmentInPosition(int position) {
                 return buildFragment(position);
             }
         };
         binding.vpBase.setAdapter(tabsAdapter);
-        binding.tbBase.setupWithViewPager(binding.vpBase);
+
+        tabLayoutMediator = new TabLayoutMediator(binding.tbBase, binding.vpBase, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(buildTitles().get(position));
+            }
+        });
+        tabLayoutMediator.attach();
     }
 
     @Override
@@ -92,13 +106,11 @@ public abstract class BasePageActivity<P extends BasePresenter> extends BaseActi
         binding.tbBase.setSelectedTabIndicatorColor(color);
     }
 
-    /**
-     * 获取 Fragment
-     *
-     * @param position position
-     * @return Fragment
-     */
-    public Fragment getFragment(int position) {
-        return tabsAdapter.getFragment(position);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (tabLayoutMediator != null) {
+            tabLayoutMediator.detach();
+        }
     }
 }

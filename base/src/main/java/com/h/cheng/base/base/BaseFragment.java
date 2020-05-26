@@ -153,7 +153,7 @@ public abstract class BaseFragment<B extends ViewDataBinding, P extends BasePres
      *
      * @param msg String
      */
-    public void showtoast(@NonNull String msg) {
+    public void showToast(@NonNull String msg) {
         Toast toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
         toast.setText(msg);
         toast.show();

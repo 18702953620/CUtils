@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 
 /**
- * 作者： ch
+ * @author ch
  * 时间： 2019/1/16 0016-上午 8:56
  * 描述： 单位转换工具类
  * 来源：
@@ -18,9 +18,9 @@ public class DensityUtils {
     /**
      * dp转px
      *
-     * @param context
-     * @param dpVal
-     * @return
+     * @param context context
+     * @param dpVal   dpVal
+     * @return int
      */
     public static int dp2px(Context context, float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal,
@@ -30,9 +30,9 @@ public class DensityUtils {
     /**
      * sp转px
      *
-     * @param context
-     * @param spVal
-     * @return
+     * @param context context
+     * @param spVal   pxVal
+     * @return int
      */
     public static int sp2px(Context context, float spVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spVal,
@@ -42,9 +42,9 @@ public class DensityUtils {
     /**
      * px转dp
      *
-     * @param context
-     * @param pxVal
-     * @return
+     * @param context context
+     * @param pxVal   pxVal
+     * @return float
      */
     public static float px2dp(Context context, float pxVal) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -54,9 +54,9 @@ public class DensityUtils {
     /**
      * px转sp
      *
-     * @param
-     * @param pxVal
-     * @return
+     * @param context context
+     * @param pxVal   pxVal
+     * @return float
      */
     public static float px2sp(Context context, float pxVal) {
         return (pxVal / context.getResources().getDisplayMetrics().scaledDensity);

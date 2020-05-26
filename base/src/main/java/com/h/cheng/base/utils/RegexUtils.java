@@ -197,9 +197,9 @@ public final class RegexUtils {
     /**
      * 只允许字母、数字和汉字
      *
-     * @param str
-     * @return
-     * @throws PatternSyntaxException
+     * @param str str
+     * @return boolean
+     * @throws PatternSyntaxException PatternSyntaxException
      */
     public static boolean stringFilter(String str) throws PatternSyntaxException {
         // 只允许字母、数字和汉字
@@ -210,9 +210,9 @@ public final class RegexUtils {
     /**
      * 只允许字母、数字和汉字
      *
-     * @param str
-     * @return
-     * @throws PatternSyntaxException
+     * @param str str
+     * @return boolean
+     * @throws PatternSyntaxException PatternSyntaxException
      */
     public static boolean stringFilters(String str) throws PatternSyntaxException {
         // 只允许字母、数字和汉字
@@ -223,9 +223,9 @@ public final class RegexUtils {
     /**
      * 不允许输入空格
      *
-     * @param s
-     * @param start
-     * @param editText
+     * @param s        s
+     * @param start    start
+     * @param editText editText
      */
     public static void inputHint(CharSequence s, int start, EditText editText) {
         if (s.toString().contains(" ")) {

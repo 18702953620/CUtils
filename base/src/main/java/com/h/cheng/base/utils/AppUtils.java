@@ -14,7 +14,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 /**
- * 作者： ch
+ * @author ch
  * 时间： 2019/1/16 0016-上午 8:56
  * 描述： app相关工具类
  * 来源：
@@ -45,7 +45,7 @@ public class AppUtils {
     /**
      * [获取应用程序版本名称信息]
      *
-     * @param context
+     * @param context context
      * @return 当前应用的版本名称
      */
     public static String getVersionName(Context context) {
@@ -63,7 +63,7 @@ public class AppUtils {
     /**
      * [获取应用程序版本名称信息]
      *
-     * @param context
+     * @param context context
      * @return 当前应用的版本名称
      */
     public static int getVersionCode(Context context) {
@@ -81,8 +81,8 @@ public class AppUtils {
     /**
      * 获得应用包名
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return String
      */
     public static String getAppPackageName(Context context) {
         try {
@@ -99,8 +99,8 @@ public class AppUtils {
     /**
      * 获得app的应用签名
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return String
      */
     public static String getAppSignKey(Context context) {
         try {
@@ -128,21 +128,24 @@ public class AppUtils {
     /**
      * 将获取到得编码进行16进制转换
      *
-     * @param arr
-     * @return
+     * @param arr arr
+     * @return String
      */
     private static String byte2HexFormatted(byte[] arr) {
         StringBuilder str = new StringBuilder(arr.length * 2);
         for (int i = 0; i < arr.length; i++) {
             String h = Integer.toHexString(arr[i]);
             int l = h.length();
-            if (l == 1)
+            if (l == 1) {
                 h = "0" + h;
-            if (l > 2)
+            }
+            if (l > 2) {
                 h = h.substring(l - 2, l);
+            }
             str.append(h.toUpperCase());
-            if (i < (arr.length - 1))
+            if (i < (arr.length - 1)) {
                 str.append(':');
+            }
         }
         return str.toString();
     }
@@ -150,8 +153,8 @@ public class AppUtils {
     /**
      * 获得app 的sha1值
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return String
      */
     public static String getAppSignSha1(Context context) {
         try {
@@ -175,8 +178,13 @@ public class AppUtils {
         return null;
     }
 
-
-    public static String unicodeToUTF_8(String src) {
+    /**
+     * 转码
+     *
+     * @param src src
+     * @return String
+     */
+    public static String unicodeToutf8(String src) {
         if (null == src) {
             return null;
         }
@@ -202,7 +210,6 @@ public class AppUtils {
     }
 
     public static String getPlaceholderValues(String key, Context context) {
-
         try {
             ApplicationInfo appInfo = context.getPackageManager()
                     .getApplicationInfo(getAppPackageName(context),
@@ -220,8 +227,8 @@ public class AppUtils {
     /**
      * 获取androidmanifest.xml 中providers 的authority
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return String
      */
     public static String getMetaDataFromAuthority(Context context) {
         try {

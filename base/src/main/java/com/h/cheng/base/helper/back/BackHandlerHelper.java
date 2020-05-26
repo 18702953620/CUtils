@@ -7,13 +7,10 @@ import androidx.fragment.app.FragmentManager;
 import java.util.List;
 
 /**
- * 作者： ch
- * 时间： 2018/8/20 0020-下午 2:12
- * 描述： 处理fragment 的返回键
- * 来源：
+ * @author ch
+ * @date 2018/8/20 0020-下午 2:12
+ * desc  处理fragment 的返回键
  */
-
-
 public class BackHandlerHelper {
 
     /**

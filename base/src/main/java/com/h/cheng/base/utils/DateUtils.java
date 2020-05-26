@@ -7,10 +7,9 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- * 作者： ch
+ * @author ch
  * 时间： 2018/11/26 0026-上午 11:11
  * 描述： 日期格式工具类
- * 来源：
  */
 @SuppressLint("SimpleDateFormat")
 public class DateUtils {
@@ -22,45 +21,45 @@ public class DateUtils {
     private static SimpleDateFormat MMSS = new SimpleDateFormat("mm:ss");
 
 
-    public static String getFormatDateYM(String time) {
+    public static String getFormatDateYm(String time) {
         long t = ParseUtils.parseLong(time) * 1000;
-        return getFormatDateYM(t);
+        return getFormatDateYm(t);
     }
 
 
-    public static String getFormatDateYS(String time) {
+    public static String getFormatDateYs(String time) {
         long t = ParseUtils.parseLong(time) * 1000;
-        return getFormatDateYS(t);
+        return getFormatDateYs(t);
     }
 
-    public static String getFormatDateYD(String time) {
+    public static String getFormatDateYd(String time) {
         long t = ParseUtils.parseLong(time) * 1000;
-        return getFormatDateYD(t);
+        return getFormatDateYd(t);
     }
 
-    public static String getFormatDateMS(String time) {
+    public static String getFormatDateMs(String time) {
         long t = ParseUtils.parseLong(time) * 1000;
-        return getFormatDateMS(t);
+        return getFormatDateMs(t);
     }
 
-    public static String getFormatDateYM(long time) {
+    public static String getFormatDateYm(long time) {
         return YYYYMMDDHHMM.format(new Date(time));
     }
 
-    public static String getFormatDateMS(long time) {
+    public static String getFormatDateMs(long time) {
         return MMSS.format(new Date(time));
     }
 
-    public static String getFormatDateYS(long time) {
+    public static String getFormatDateYs(long time) {
         return YYYYMMDDHHMMSS.format(new Date(time));
     }
 
-    public static String getFormatDateHS(long time) {
+    public static String getFormatDateHs(long time) {
         HHMMSS.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
         return HHMMSS.format(time);
     }
 
-    public static String getFormatDateYD(long time) {
+    public static String getFormatDateYd(long time) {
         return YYYYMMDD.format(new Date(time));
     }
 }

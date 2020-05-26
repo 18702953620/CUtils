@@ -9,7 +9,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 
 
 /**
- * 作者： ch
+ * @author ch
  * 时间： 2019/1/16 0016-上午 8:56
  * 描述： 高斯模糊工具类
  * 来源：
@@ -21,7 +21,7 @@ public class BlurUtils {
      * @param context 上下文对象
      * @param bitmap  传入的bitmap图片
      * @param radius  模糊度（Radius最大只能设置25.f）
-     * @return
+     * @return Bitmap
      */
     public static Bitmap blurBitmap(Context context, Bitmap bitmap, int radius) {
         return blurBitmap(context, bitmap, 8, radius);
@@ -30,11 +30,11 @@ public class BlurUtils {
     /**
      * 获取模糊的图片
      *
-     * @param context
-     * @param bitmap
+     * @param context context
+     * @param bitmap  bitmap
      * @param scale   缩放比例
-     * @param radius
-     * @return
+     * @param radius  radius
+     * @return Bitmap
      */
     public static Bitmap blurBitmap(Context context, Bitmap bitmap, int scale, int radius) {
 

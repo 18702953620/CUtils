@@ -97,11 +97,6 @@ public class BasicParamsInterceptor implements Interceptor {
         if (queryParamsMap.size() > 0) {
             request = injectParamsIntoUrl(request.url().newBuilder(), requestBuilder, queryParamsMap);
         }
-//
-//        paramsMap.put("userCode", (String) SpfUtils.getParam(GLCommonMoudle.getAppContext(), AppConstant.USER_CODE, ""));
-//        paramsMap.put("projectId", (String) SpfUtils.getParam(GLCommonMoudle.getAppContext(), AppConstant.PROJECT_ID, ""));
-//        paramsMap.put("isCompang", (int) SpfUtils.getParam(GLCommonMoudle.getAppContext(), AppConstant.USER_TYPE, 0) + "");
-//        paramsMap.put("projectCommandCentreId", (String) SpfUtils.getParam(GLCommonMoudle.getAppContext(), AppConstant.PROJECT_COMMAND_CENTRE_ID, ""));
 
         // process post body inject
         if (paramsMap.size() > 0) {

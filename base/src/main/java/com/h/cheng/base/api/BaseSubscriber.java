@@ -12,7 +12,7 @@ import io.reactivex.subscribers.DisposableSubscriber;
 import retrofit2.HttpException;
 
 /**
- * 作者： ch
+ * @author ch
  * 时间： 2019/11/21 14:05
  * 描述：
  * 来源：
@@ -51,7 +51,7 @@ public abstract class BaseSubscriber<T> extends DisposableSubscriber<T> {
         if (view != null && isShowDialog) {
             view.hideLoading();
         }
-        BaseException be = null;
+        BaseException be;
 
         if (e != null) {
 
@@ -98,7 +98,17 @@ public abstract class BaseSubscriber<T> extends DisposableSubscriber<T> {
         }
     }
 
+    /**
+     * 请求成功
+     *
+     * @param o o
+     */
     public abstract void onSuccess(T o);
 
+    /**
+     * 请求失败
+     *
+     * @param msg 信息
+     */
     public abstract void onError(String msg);
 }

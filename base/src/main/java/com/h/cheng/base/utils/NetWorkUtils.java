@@ -4,6 +4,12 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/**
+ * @author ch
+ * 时间： 2019/3/7 0007-上午 10:54
+ * 描述：
+ * 来源：
+ */
 public class NetWorkUtils {
     /**
      * 没有网络
@@ -26,8 +32,8 @@ public class NetWorkUtils {
     /**
      * 判断网络状态
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return int
      */
 
     public static int getNetWork(Context context) {
@@ -54,8 +60,8 @@ public class NetWorkUtils {
     /**
      * 判断网络是否连接
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return boolean
      */
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

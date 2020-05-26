@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 /**
- * 作者： ch
+ * @author ch
  * 时间： 2019/3/7 0007-上午 10:54
  * 描述：
  * 来源：
@@ -19,6 +19,12 @@ public class ResultHelper {
     private static final String TAG = "ResultHelper";
     private Context mContext;
 
+    /**
+     * 初始化
+     *
+     * @param activity activity
+     * @return ResultHelper
+     */
     public static ResultHelper init(FragmentActivity activity) {
         return new ResultHelper(activity);
     }
@@ -57,6 +63,12 @@ public class ResultHelper {
 
 
     public interface CallBack {
+        /**
+         * onActivityResult
+         *
+         * @param resultCode resultCode
+         * @param data       data
+         */
         void onActivityResult(int resultCode, Intent data);
     }
 

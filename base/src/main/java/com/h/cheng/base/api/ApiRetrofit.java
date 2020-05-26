@@ -22,22 +22,20 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 /**
- * 作者： ch
+ * @author ch
  * 时间： 2016/12/27.13:56
- * 描述：
+ * 描述：ApiRetrofit
  * 来源：
  */
 public class ApiRetrofit {
 
-    private final String BASE_SERVER_URL = "https://wanandroid.com/";
+    private static final String BASE_SERVER_URL = "https://wanandroid.com/";
 
     private static ApiRetrofit apiRetrofit;
     private ApiServer apiServer;
     private Retrofit retrofit;
 
     private static final String TAG = "ApiRetrofit";
-    private BasicParamsInterceptor paramsInterceptor = new BasicParamsInterceptor.Builder()
-            .build();
 
     /**
      * 请求访问quest
@@ -51,12 +49,17 @@ public class ApiRetrofit {
             Response response = chain.proceed(chain.request());
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime;
-            MediaType mediaType = response.body().contentType();
-            String content = response.body().string();
-            Log.e(TAG, "----------Request Start----------------");
-            Log.e(TAG, "| " + request.toString() + request.headers().toString());
-            Log.e(TAG, "| Response:" + AppUtils.unicodeToUTF_8(content));
-            Log.e(TAG, "----------Request End:" + duration + "毫秒----------");
+            MediaType mediaType = null;
+            String content = null;
+            if (response.body() != null) {
+                mediaType = response.body().contentType();
+                content = response.body().string();
+                Log.e(TAG, "----------Request Start----------------");
+                Log.e(TAG, "| " + request.toString() + request.headers().toString());
+                Log.e(TAG, "| Response:" + AppUtils.unicodeToutf8(content));
+                Log.e(TAG, "----------Request End:" + duration + "毫秒----------");
+            }
+
             return response.newBuilder()
                     .body(ResponseBody.create(mediaType, content))
                     .build();
@@ -68,7 +71,7 @@ public class ApiRetrofit {
         //添加log拦截器
         OkHttpClient client = new OkHttpClient.Builder()
                 //公共参数 链接替换
-                .addInterceptor(paramsInterceptor)
+                .addInterceptor(new BasicParamsInterceptor.Builder().build())
                 //添加log拦截器
                 .addInterceptor(interceptor)
                 //禁用代理

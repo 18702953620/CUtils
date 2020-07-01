@@ -16,8 +16,8 @@ public class CameraUtils {
     /**
      * 是否有摄像头
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return boolean
      */
     public static boolean checkCamera(Context context) {
         return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);

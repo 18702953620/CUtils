@@ -172,6 +172,4 @@ public class PSButton extends AppCompatTextView {
         }
         this.setBackground(background);
     }
-
-
 }

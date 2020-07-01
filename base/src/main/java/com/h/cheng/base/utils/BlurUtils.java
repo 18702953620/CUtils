@@ -58,7 +58,6 @@ public class BlurUtils {
         // Copy the final bitmap created by the out Allocation to the outBitmap
         allOut.copyTo(outBitmap);
         // recycle the original bitmap
-        // bitmap.recycle();
         // After finishing everything, we destroy the Renderscript.
         rs.destroy();
         return outBitmap;

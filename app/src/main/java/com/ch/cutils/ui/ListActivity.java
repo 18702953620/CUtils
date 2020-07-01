@@ -1,4 +1,4 @@
-package com.ch.cutils;
+package com.ch.cutils.ui;
 
 import com.ch.cutils.adapter.ListAdapter;
 import com.ch.cutils.bean.ArticleModel;
@@ -7,6 +7,8 @@ import com.ch.cutils.presenter.AppPresenter;
 import com.ch.cutils.presenter.AppPresenter2;
 import com.ch.cutils.view.AppView;
 import com.h.cheng.base.base.BaseListActivity;
+import com.h.cheng.http.PsHttp;
+import com.h.cheng.http.callback.BaseSubscriber;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
@@ -31,7 +33,21 @@ public class ListActivity extends BaseListActivity<AppPresenter2> implements App
         setTitle("列表Demo");
         listAdapter = new ListAdapter(null);
         setAdapter(listAdapter);
-        presenter.getWxArticleList();
+//        presenter.getWxArticleList();
+        String url = "https://wanandroid.com/wxarticle/chapters/json";
+        PsHttp.get(url)
+                .asResponseList(ArticleModel.class)
+                .subscribe(new BaseSubscriber<List<ArticleModel>>() {
+                    @Override
+                    public void onSuccess(List<ArticleModel> o) {
+                        listAdapter.setNewData(o);
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        showToast(msg);
+                    }
+                });
     }
 
     @Override

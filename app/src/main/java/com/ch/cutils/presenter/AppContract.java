@@ -13,6 +13,9 @@ import java.util.List;
 public interface AppContract {
 
     interface View extends BaseView {
+        /**
+         * @param o List<ArticleModel>
+         */
         void onGetListSucc(List<ArticleModel> o);
 
         void onGetInfoSucc(ArticleModel o);

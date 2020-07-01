@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <com.h.cheng.base.widget.TitleView
             android:id="@+id/title"
@@ -29,6 +29,17 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/btn_ps_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ps系列" />
+
+                <Button
+                    android:id="@+id/btn_tab_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="仿美团外面底部菜单" />
 
                 <Button
                     android:id="@+id/btn_simple_list"
@@ -37,16 +48,25 @@
                     android:text="简单列表" />
 
                 <Button
+                    android:id="@+id/btn_simple_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="fragment+简单列表"
+                    android:textAllCaps="false" />
+
+                <Button
                     android:id="@+id/btn_tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="tabs" />
+                    android:text="viewpager + tablayout"
+                    android:textAllCaps="false" />
 
                 <Button
                     android:id="@+id/btn_tabs2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="tabs2" />
+                    android:text="viewpager2 + tablayout"
+                    android:textAllCaps="false" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

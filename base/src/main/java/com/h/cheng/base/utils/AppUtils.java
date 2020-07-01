@@ -241,8 +241,6 @@ public class AppUtils {
                 return providers[0].authority;
             }
 
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

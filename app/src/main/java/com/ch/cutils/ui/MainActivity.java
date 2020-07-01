@@ -1,8 +1,9 @@
-package com.ch.cutils;
+package com.ch.cutils.ui;
 
 import android.content.Intent;
 import android.view.View;
 
+import com.ch.cutils.R;
 import com.ch.cutils.databinding.ActivityMainBinding;
 import com.h.cheng.base.api.BasePresenter;
 import com.h.cheng.base.base.BaseActivity;
@@ -29,21 +30,41 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
         binding.btnSimpleList.setOnClickListener(this);
         binding.btnTabs.setOnClickListener(this);
         binding.btnTabs2.setOnClickListener(this);
+        binding.btnPsView.setOnClickListener(this);
+        binding.btnTabView.setOnClickListener(this);
+        binding.btnSimpleFragment.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
+            //ps
+            case R.id.btn_ps_view:
+                intent.setClass(context, PsViewActivity.class);
+                break;
+            //仿美团tab
+            case R.id.btn_tab_view:
+
+                break;
+            //简单列表
             case R.id.btn_simple_list:
                 intent.setClass(context, ListActivity.class);
                 break;
+            //viewpager + tablayout
             case R.id.btn_tabs:
                 intent.setClass(context, TabsActivity.class);
                 break;
+            //viewpager2 + tablayout
             case R.id.btn_tabs2:
                 intent.setClass(context, Tabs2Activity.class);
                 break;
+
+            case R.id.btn_simple_fragment:
+                intent.setClass(context, TabFragmentActivity.class);
+                break;
+
 
             default:
         }

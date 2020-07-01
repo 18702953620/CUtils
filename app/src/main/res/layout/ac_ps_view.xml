@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.h.cheng.base.widget.TitleView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ps_need_back="false"
+        app:ps_title="ps系列" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.h.cheng.base.widget.PSTextView
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="圆角"
+                    app:ps_background_color="#ff0000"
+                    app:ps_radius="15dp" />
+
+                <com.h.cheng.base.widget.PSTextView
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="不同大小的圆角"
+                    app:ps_background_color="#00ff00"
+                    app:ps_bottom_left_radius="5dp"
+                    app:ps_bottom_right_radius="5dp"
+                    app:ps_top_left_radius="10dp"
+                    app:ps_top_right_radius="20dp" />
+
+                <com.h.cheng.base.widget.PSTextView
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="描边+圆角"
+                    app:ps_background_color="#ffffff"
+                    app:ps_border_color="#333333"
+                    app:ps_border_width="1dp"
+                    app:ps_radius="15dp" />
+
+
+                <com.h.cheng.base.widget.PSTextView
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="不可用"
+                    android:textColor="#ffffff"
+                    app:ps_background_color="#ffffff"
+                    app:ps_disable_background_color="#0000ff"
+                    app:ps_radius="15dp" />
+
+                <com.h.cheng.base.widget.PSTextView
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="按下效果"
+                    android:textColor="#ffffff"
+                    app:ps_background_color="#00ff00"
+                    app:ps_focus_background_color="#0000ff"
+                    app:ps_radius="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.h.cheng.base.widget.PSButton
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="圆角"
+                    app:ps_btn_background_color="#ff0000"
+                    app:ps_btn_radius="15dp" />
+
+                <com.h.cheng.base.widget.PSButton
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="不同大小的圆角"
+                    app:ps_btn_background_color="#00ff00"
+                    app:ps_btn_bottom_left_radius="5dp"
+                    app:ps_btn_bottom_right_radius="5dp"
+                    app:ps_btn_top_left_radius="10dp"
+                    app:ps_btn_top_right_radius="20dp" />
+
+                <com.h.cheng.base.widget.PSButton
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="描边+圆角"
+                    app:ps_btn_background_color="#ffffff"
+                    app:ps_btn_border_color="#333333"
+                    app:ps_btn_border_width="1dp"
+                    app:ps_btn_radius="15dp" />
+
+                <com.h.cheng.base.widget.PSButton
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="不可用"
+                    android:textColor="#ffffff"
+                    app:ps_btn_background_color="#ffffff"
+                    app:ps_btn_disable_background_color="#0000ff"
+                    app:ps_btn_radius="15dp" />
+
+
+                <com.h.cheng.base.widget.PSButton
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="按下效果"
+                    app:ps_btn_background_color="#ffffff"
+                    app:ps_btn_focus_background_color="#fff000"
+                    app:ps_btn_radius="15dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

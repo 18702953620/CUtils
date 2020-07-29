@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseArray;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -53,4 +54,5 @@ public class RouterFragment extends Fragment {
             callback.onActivityResult(resultCode, data);
         }
     }
+
 }

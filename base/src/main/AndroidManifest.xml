@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.h.cheng.base" />
+    package="com.h.cheng.base">
+
+    <application>
+        <activity android:name=".common.PreviewActivity" />
+    </application>
+</manifest>

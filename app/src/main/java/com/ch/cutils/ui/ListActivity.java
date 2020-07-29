@@ -6,6 +6,8 @@ import com.ch.cutils.presenter.AppContract;
 import com.ch.cutils.presenter.AppPresenter;
 import com.ch.cutils.presenter.AppPresenter2;
 import com.ch.cutils.view.AppView;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.h.cheng.base.base.BaseListActivity;
 import com.h.cheng.http.PsHttp;
 import com.h.cheng.http.callback.BaseSubscriber;
@@ -30,9 +32,8 @@ public class ListActivity extends BaseListActivity<AppPresenter2> implements App
 
     @Override
     protected void initView() {
+        super.initView();
         setTitle("列表Demo");
-        listAdapter = new ListAdapter(null);
-        setAdapter(listAdapter);
 //        presenter.getWxArticleList();
         String url = "https://wanandroid.com/wxarticle/chapters/json";
         PsHttp.get(url)
@@ -51,7 +52,13 @@ public class ListActivity extends BaseListActivity<AppPresenter2> implements App
     }
 
     @Override
-    protected void refresh(RefreshLayout refreshLayout) {
+    public BaseQuickAdapter<?, BaseViewHolder> getAdapter() {
+        listAdapter = new ListAdapter(null);
+        return listAdapter;
+    }
+
+    @Override
+    public void refresh(RefreshLayout refreshLayout) {
         ArticleModel articleModel = new ArticleModel();
         articleModel.setName("refresh");
         List<ArticleModel> models = new ArrayList<>();
@@ -61,7 +68,7 @@ public class ListActivity extends BaseListActivity<AppPresenter2> implements App
     }
 
     @Override
-    protected void loadMore(RefreshLayout refreshLayout) {
+    public void loadMore(RefreshLayout refreshLayout) {
         ArticleModel articleModel = new ArticleModel();
         articleModel.setName("loadMore");
         listAdapter.addData(articleModel);

@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
         binding.btnPsView.setOnClickListener(this);
         binding.btnTabView.setOnClickListener(this);
         binding.btnSimpleFragment.setOnClickListener(this);
+        binding.btnPreview.setOnClickListener(this);
 
     }
 
@@ -63,6 +64,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
 
             case R.id.btn_simple_fragment:
                 intent.setClass(context, TabFragmentActivity.class);
+                break;
+            //大图预览
+            case R.id.btn_preview:
+                intent.setClass(context, ImgListActivity.class);
                 break;
 
 

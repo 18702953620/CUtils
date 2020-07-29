@@ -1,0 +1,99 @@
+package com.h.cheng.http;
+
+import android.util.Log;
+
+import com.h.cheng.http.request.FormRequest;
+import com.h.cheng.http.request.GetRequest;
+import com.h.cheng.http.request.Method;
+import com.h.cheng.http.utils.AppUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+/**
+ * @author ch
+ * @date 2020/6/9-17:13
+ * @desc
+ */
+public class PsHttp implements PsRequestImpl {
+
+    private static final String TAG = "PsHttp";
+
+    private static OkHttpClient client;
+
+    public PsHttp() {
+        client = getDefaultOkHttpClient();
+    }
+
+
+    public static FormRequest post(String url) {
+        return new FormRequest(url, Method.POST);
+    }
+
+
+    public static GetRequest get(String url) {
+        return new GetRequest(url);
+    }
+
+    @Override
+    public void postJson() {
+
+    }
+
+    @Override
+    public void postFile() {
+
+    }
+
+
+    /**
+     * 连接、读写超时均为10s
+     *
+     * @return 返回默认的OkHttpClient对象
+     */
+    public static OkHttpClient getDefaultOkHttpClient() {
+        return new OkHttpClient.Builder()
+                .addInterceptor(getLogInterceptor())
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .build();
+    }
+
+    /**
+     * 请求访问quest
+     * response拦截器
+     */
+    public static Interceptor getLogInterceptor() {
+        return new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                long startTime = System.currentTimeMillis();
+                Response response = chain.proceed(chain.request());
+                long endTime = System.currentTimeMillis();
+                long duration = endTime - startTime;
+                MediaType mediaType = null;
+                String content = null;
+                if (response.body() != null) {
+                    mediaType = response.body().contentType();
+                    content = response.body().string();
+                    Log.e(TAG, "----------Request Start----------------");
+                    Log.e(TAG, "| " + request.toString() + request.headers().toString());
+                    Log.e(TAG, "| Response:" + AppUtils.unicodeToutf8(content));
+                    Log.e(TAG, "----------Request End:" + duration + "毫秒----------");
+                }
+                return response.newBuilder()
+                        .body(ResponseBody.create(mediaType, content))
+                        .build();
+            }
+        };
+    }
+}

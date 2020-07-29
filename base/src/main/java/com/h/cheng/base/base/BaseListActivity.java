@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.h.cheng.base.R;
 import com.h.cheng.base.api.BasePresenter;
 import com.h.cheng.base.databinding.AcBaseListBinding;
@@ -16,7 +17,30 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
  * @date 2020/4/27-17:14
  * desc 基础 列表
  */
-public class BaseListActivity<P extends BasePresenter> extends BaseActivity<AcBaseListBinding, P> {
+public abstract class BaseListActivity<P extends BasePresenter> extends BaseActivity<AcBaseListBinding, P> {
+
+
+    /**
+     * 生成 adpater
+     *
+     * @return BaseQuickAdapter
+     */
+
+    public abstract BaseQuickAdapter<?, BaseViewHolder> getAdapter();
+
+    /**
+     * 刷新
+     *
+     * @param refreshLayout refreshLayout
+     */
+    public abstract void refresh(RefreshLayout refreshLayout);
+
+    /**
+     * 更多
+     *
+     * @param refreshLayout refreshLayout
+     */
+    public abstract void loadMore(RefreshLayout refreshLayout);
 
     @Override
     protected P createPresenter() {
@@ -30,7 +54,9 @@ public class BaseListActivity<P extends BasePresenter> extends BaseActivity<AcBa
 
     @Override
     protected void initView() {
-
+        setAdapter(getAdapter());
+        refresh(binding.srlBaseList);
+        binding.rvBaseList.setBackgroundColor(getValuesColor(R.color.color_f8f8f8));
     }
 
     @Override
@@ -72,23 +98,6 @@ public class BaseListActivity<P extends BasePresenter> extends BaseActivity<AcBa
         }
     }
 
-    /**
-     * 刷新
-     *
-     * @param refreshLayout refreshLayout
-     */
-    protected void refresh(RefreshLayout refreshLayout) {
-
-    }
-
-    /**
-     * 更多
-     *
-     * @param refreshLayout refreshLayout
-     */
-    protected void loadMore(RefreshLayout refreshLayout) {
-
-    }
 
     /**
      * 设置 adapter
@@ -100,6 +109,15 @@ public class BaseListActivity<P extends BasePresenter> extends BaseActivity<AcBa
             binding.rvBaseList.setLayoutManager(new LinearLayoutManager(context));
             binding.rvBaseList.setAdapter(quickAdapter);
         }
+    }
+
+    /**
+     * 添加 ItemDecoration
+     *
+     * @param decor decor
+     */
+    public void addItemDecoration(RecyclerView.ItemDecoration decor) {
+        binding.rvBaseList.addItemDecoration(decor);
     }
 
     /**

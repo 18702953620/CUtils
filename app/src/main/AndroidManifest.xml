@@ -3,6 +3,8 @@
     package="com.ch.cutils">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApp"
@@ -12,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.TabBottomActivity"></activity>
+        <activity android:name=".ui.TabBottomActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +27,7 @@
         <activity android:name=".ui.Tabs2Activity" />
         <activity android:name=".ui.PsViewActivity" />
         <activity android:name=".ui.TabFragmentActivity" />
+        <activity android:name=".ui.ImgListActivity" />
     </application>
 
 </manifest>

@@ -109,6 +109,13 @@ public class ApiRetrofit {
         return apiServer;
     }
 
+    /**
+     * 获取 ApiService
+     *
+     * @param serviceCls serviceCls
+     * @param <T>        T
+     * @return T
+     */
     public <T> T getService(@NonNull final Class<T> serviceCls) {
         return retrofit.create(serviceCls);
     }

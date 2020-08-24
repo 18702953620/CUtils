@@ -1,5 +1,11 @@
 # CUtils
 常用工具类、自定义view
+
+## base
+
+### common
+* preview 大图预览
+
 ### helper
 * back Fragment中返回键的处理
 * result 封装`startActivityForResult`
@@ -31,3 +37,18 @@
 * PSButton 实现了圆角、描边、按下、不可用等状态
 * PSTextView 实现了圆角、描边等状态
 * AlignTextView 不等字数对齐
+* TitleView 标题栏
+
+## permiss 
+权限相关
+[【源码阅读】AndPermission源码阅读](https://www.jianshu.com/p/24a33acb7eb6)
+
+## web 
+封装x5浏览器
+[【Android Web】腾讯X5浏览器的集成与常见问题](https://www.jianshu.com/p/1b6c57f04dc1)
+
+## filePicker
+图片、文件选择器
+
+## http
+封装 okhttp

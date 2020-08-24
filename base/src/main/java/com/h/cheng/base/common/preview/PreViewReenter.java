@@ -1,4 +1,4 @@
-package com.h.cheng.base.common;
+package com.h.cheng.base.common.preview;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -30,7 +30,7 @@ public class PreViewReenter implements OnActivityReenter {
     @Override
     public void onActivityReenter(int resultCode, Intent intent, BaseQuickAdapter quickAdapter, int idRes) {
         if (resultCode == Activity.RESULT_OK && intent != null) {
-            int exitPos = intent.getIntExtra(PreviewActivity.IMG_POSITION, -1);
+            int exitPos = intent.getIntExtra(BasePreviewActivity.IMG_POSITION, -1);
             final View exitView = getExitView(exitPos, quickAdapter, idRes);
             if (exitView != null) {
                 ActivityCompat.setExitSharedElementCallback(activity, new SharedElementCallback() {

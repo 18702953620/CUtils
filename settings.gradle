@@ -1,3 +1,6 @@
+include ':permiss'
+include ':filePicker'
+include ':web'
 include ':http'
 include ':app'
 include ':base'

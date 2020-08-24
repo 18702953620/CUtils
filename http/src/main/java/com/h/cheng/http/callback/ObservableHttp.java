@@ -1,11 +1,10 @@
-package com.h.cheng.http.request;
+package com.h.cheng.http.callback;
 
 import com.h.cheng.http.parser.Parser;
 
 import org.reactivestreams.Subscriber;
 
 import java.io.IOException;
-import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.exceptions.Exceptions;
@@ -21,7 +20,7 @@ import okhttp3.Response;
  * @date 2020/6/10-11:27
  * @desc
  */
-public class ObservableListHttp<T> extends Flowable<List<T>> {
+public class ObservableHttp<T> extends Flowable<T> {
 
     private Call mCall;
     private OkHttpClient okClient;
@@ -29,10 +28,32 @@ public class ObservableListHttp<T> extends Flowable<List<T>> {
     private Parser<T> parser;
 
 
-    public ObservableListHttp(OkHttpClient okClient, Request request, Parser<T> parser) {
+    public ObservableHttp(OkHttpClient okClient, Request request, Parser<T> parser) {
         this.okClient = okClient;
         this.request = request;
         this.parser = parser;
+    }
+
+    @Override
+    protected void subscribeActual(Subscriber<? super T> subscriber) {
+        HttpDisposable d = new HttpDisposable(subscriber);
+        subscriber.onSubscribe(d);
+        if (d.isCancelled()) {
+            return;
+        }
+        T value;
+        try {
+            value = execute(request);
+        } catch (Throwable e) {
+            Exceptions.throwIfFatal(e);
+            if (!d.isCancelled()) {
+                subscriber.onError(e);
+            } else {
+                RxJavaPlugins.onError(e);
+            }
+            return;
+        }
+        d.complete(value);
     }
 
     /**
@@ -41,7 +62,7 @@ public class ObservableListHttp<T> extends Flowable<List<T>> {
      * @param request request
      * @return T
      */
-    private List<T> execute(Request request) {
+    private T execute(Request request) {
         mCall = newCall(okClient, request);
         Response networkResponse = null;
         try {
@@ -49,7 +70,7 @@ public class ObservableListHttp<T> extends Flowable<List<T>> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return parser.parserList(networkResponse);
+        return parser.parser(networkResponse);
     }
 
 
@@ -65,36 +86,13 @@ public class ObservableListHttp<T> extends Flowable<List<T>> {
     }
 
 
-    @Override
-    protected void subscribeActual(Subscriber<? super List<T>> subscriber) {
-        HttpDisposable d = new HttpDisposable(subscriber);
-        subscriber.onSubscribe(d);
-        if (d.isCancelled()) {
-            return;
-        }
-        List<T> value;
-        try {
-            value = execute(request);
-        } catch (Throwable e) {
-            Exceptions.throwIfFatal(e);
-            if (!d.isCancelled()) {
-                subscriber.onError(e);
-            } else {
-                RxJavaPlugins.onError(e);
-            }
-            return;
-        }
-        d.complete(value);
-    }
-
-
-    class HttpDisposable extends DeferredScalarSubscription<List<T>> {
+    class HttpDisposable extends DeferredScalarSubscription<T> {
         /**
          * Creates a DeferredScalarSubscription by wrapping the given Subscriber.
          *
          * @param downstream the Subscriber to wrap, not null (not verified)
          */
-        public HttpDisposable(Subscriber<? super List<T>> downstream) {
+        public HttpDisposable(Subscriber<? super T> downstream) {
             super(downstream);
         }
 

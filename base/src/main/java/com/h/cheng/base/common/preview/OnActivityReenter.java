@@ -1,4 +1,4 @@
-package com.h.cheng.base.common;
+package com.h.cheng.base.common.preview;
 
 import android.content.Intent;
 

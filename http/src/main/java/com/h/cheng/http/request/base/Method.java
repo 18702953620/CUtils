@@ -1,4 +1,4 @@
-package com.h.cheng.http.request;
+package com.h.cheng.http.request.base;
 
 /**
  * 请求方法

@@ -168,5 +168,8 @@ public class PSTextView extends AppCompatTextView {
         this.setBackground(background);
     }
 
-
+    public void setPsBorderColor(int psBorderColor) {
+        this.psBorderColor = psBorderColor;
+        refresh();
+    }
 }

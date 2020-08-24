@@ -65,7 +65,7 @@ public class BaseListFragment<P extends BasePresenter> extends BaseFragment<FmBa
             //设置空view
             if (emptyRes != 0) {
                 quickAdapter.bindToRecyclerView(binding.rvBase);
-                quickAdapter.setEmptyView(emptyRes);
+                quickAdapter.setEmptyView(getViewByRes(emptyRes));
             }
         }
 

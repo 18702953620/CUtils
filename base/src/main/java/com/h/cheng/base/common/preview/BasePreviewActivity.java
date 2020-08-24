@@ -1,4 +1,4 @@
-package com.h.cheng.base.common;
+package com.h.cheng.base.common.preview;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -42,11 +41,18 @@ import java.util.Map;
  * @date 2020/7/23-16:51
  * @desc 大图预览
  */
-public class PreviewActivity<P extends BasePresenter> extends BaseActivity<AcPreviewBinding, P> {
-
+public class BasePreviewActivity<P extends BasePresenter> extends BaseActivity<AcPreviewBinding, P> {
+    /**
+     * 图片列表
+     */
     public static final String IMG_LIST = "IMG_LIST";
+    /**
+     * 进入时的位置
+     */
     public static final String IMG_POSITION = "IMG_POSITION";
-
+    /**
+     * Adapter
+     */
     private BaseQuickAdapter<String, BaseViewHolder> imgAdapter;
     /**
      * 进入时的位置
@@ -87,6 +93,7 @@ public class PreviewActivity<P extends BasePresenter> extends BaseActivity<AcPre
         imgList = getIntent().getStringArrayListExtra(IMG_LIST);
 
         enterPosition = getIntent().getIntExtra(IMG_POSITION, 0);
+
         currentPosition = enterPosition;
 
         imgAdapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_base_preview, imgList) {
@@ -132,12 +139,7 @@ public class PreviewActivity<P extends BasePresenter> extends BaseActivity<AcPre
 
     @Override
     protected void addListener() {
-        imgAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                finish();
-            }
-        });
+        imgAdapter.setOnItemClickListener((adapter, view, position) -> finish());
     }
 
 
@@ -198,7 +200,7 @@ public class PreviewActivity<P extends BasePresenter> extends BaseActivity<AcPre
      * @param position 当前位置
      */
     public static void startPreView(Activity activity, ArrayList<String> imgList, View view, int position, OnActivityReenter reenter) {
-        Intent intent = new Intent(activity, PreviewActivity.class);
+        Intent intent = new Intent(activity, BasePreviewActivity.class);
         intent.putExtra(IMG_LIST, imgList);
         intent.putExtra(IMG_POSITION, position);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

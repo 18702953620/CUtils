@@ -2,6 +2,8 @@
     package="com.h.cheng.base">
 
     <application>
-        <activity android:name=".common.PreviewActivity" />
+        <activity
+            android:name=".common.preview.BasePreviewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
     </application>
 </manifest>

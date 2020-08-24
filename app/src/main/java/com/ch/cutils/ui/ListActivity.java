@@ -36,7 +36,40 @@ public class ListActivity extends BaseListActivity<AppPresenter2> implements App
         setTitle("列表Demo");
 //        presenter.getWxArticleList();
         String url = "https://wanandroid.com/wxarticle/chapters/json";
-        PsHttp.get(url)
+//        PsHttp.get(url)
+//                .asResponseList(ArticleModel.class)
+//                .subscribe(new BaseSubscriber<List<ArticleModel>>() {
+//                    @Override
+//                    public void onSuccess(List<ArticleModel> o) {
+//                        listAdapter.setNewData(o);
+//                    }
+//
+//                    @Override
+//                    public void onError(String msg) {
+//                        showToast(msg);
+//                    }
+//                });
+
+//        PsHttp.post(url)
+//                .addParam("page", 1)
+//                .asResponseList(ArticleModel.class)
+//                .subscribe(new BaseSubscriber<List<ArticleModel>>() {
+//                    @Override
+//                    public void onSuccess(List<ArticleModel> o) {
+//                        listAdapter.setNewData(o);
+//                    }
+//
+//                    @Override
+//                    public void onError(String msg) {
+//                        showToast(msg);
+//                    }
+//                });
+
+
+        PsHttp.postJson(url)
+                .addUrlParam("page", 2)
+                .addUrlParam("name", "郭霖")
+                .addBodyParam("time", "2020-07-31")
                 .asResponseList(ArticleModel.class)
                 .subscribe(new BaseSubscriber<List<ArticleModel>>() {
                     @Override
@@ -49,6 +82,7 @@ public class ListActivity extends BaseListActivity<AppPresenter2> implements App
                         showToast(msg);
                     }
                 });
+
     }
 
     @Override

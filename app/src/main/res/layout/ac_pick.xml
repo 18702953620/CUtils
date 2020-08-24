@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.h.cheng.base.widget.TitleView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ps_need_back="false"
+            app:ps_title="pick" />
+
+        <Button
+            android:id="@+id/btn_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="img"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_audio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="audio"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="video"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="file"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

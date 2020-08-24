@@ -1,4 +1,4 @@
-package com.h.cheng.http.request;
+package com.h.cheng.http.request.base;
 
 import okhttp3.Request;
 import okhttp3.RequestBody;

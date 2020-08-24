@@ -34,7 +34,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
         binding.btnTabView.setOnClickListener(this);
         binding.btnSimpleFragment.setOnClickListener(this);
         binding.btnPreview.setOnClickListener(this);
-
+        binding.btnWeb.setOnClickListener(this);
+        binding.btnPick.setOnClickListener(this);
     }
 
     @Override
@@ -69,7 +70,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
             case R.id.btn_preview:
                 intent.setClass(context, ImgListActivity.class);
                 break;
-
+            //网页
+            case R.id.btn_web:
+                intent.setClass(context, WebDemoActivity.class);
+                break;
+            case R.id.btn_pick:
+                intent.setClass(context, PickActivity.class);
+                break;
 
             default:
         }

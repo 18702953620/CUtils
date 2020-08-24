@@ -1,5 +1,8 @@
 package com.h.cheng.http.request;
 
+import com.h.cheng.http.request.base.BaseRequest;
+import com.h.cheng.http.request.base.Method;
+
 /**
  * @author ch
  * @date 2020/6/10-14:41

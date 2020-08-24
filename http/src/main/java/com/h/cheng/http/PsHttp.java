@@ -2,9 +2,11 @@ package com.h.cheng.http;
 
 import android.util.Log;
 
+import com.h.cheng.http.request.FileRequest;
 import com.h.cheng.http.request.FormRequest;
 import com.h.cheng.http.request.GetRequest;
-import com.h.cheng.http.request.Method;
+import com.h.cheng.http.request.JsonRequest;
+import com.h.cheng.http.request.base.Method;
 import com.h.cheng.http.utils.AppUtils;
 
 import java.io.IOException;
@@ -22,7 +24,7 @@ import okhttp3.ResponseBody;
  * @date 2020/6/9-17:13
  * @desc
  */
-public class PsHttp implements PsRequestImpl {
+public class PsHttp {
 
     private static final String TAG = "PsHttp";
 
@@ -32,24 +34,44 @@ public class PsHttp implements PsRequestImpl {
         client = getDefaultOkHttpClient();
     }
 
-
+    /**
+     * post 请求
+     *
+     * @param url url
+     * @return [FormRequest]
+     */
     public static FormRequest post(String url) {
         return new FormRequest(url, Method.POST);
     }
 
-
+    /**
+     * get 请求
+     *
+     * @param url url
+     * @return @GetRequest
+     */
     public static GetRequest get(String url) {
         return new GetRequest(url);
     }
 
-    @Override
-    public void postJson() {
-
+    /**
+     * Json
+     *
+     * @param url url
+     * @return @JsonRequest
+     */
+    public static JsonRequest postJson(String url) {
+        return new JsonRequest(url);
     }
 
-    @Override
-    public void postFile() {
-
+    /**
+     * post file
+     *
+     * @param url url
+     * @return @FileRequest
+     */
+    public static FileRequest postFile(String url) {
+        return new FileRequest(url);
     }
 
 
@@ -91,7 +113,7 @@ public class PsHttp implements PsRequestImpl {
                     Log.e(TAG, "----------Request End:" + duration + "毫秒----------");
                 }
                 return response.newBuilder()
-                        .body(ResponseBody.create(mediaType, content))
+                        .body(ResponseBody.create(content, mediaType))
                         .build();
             }
         };

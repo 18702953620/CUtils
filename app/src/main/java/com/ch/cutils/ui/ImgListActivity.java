@@ -8,14 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.ch.cutils.R;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.h.cheng.base.base.BaseListActivity;
-import com.h.cheng.base.common.OnActivityReenter;
-import com.h.cheng.base.common.PreViewReenter;
-import com.h.cheng.base.common.PreviewActivity;
+import com.h.cheng.base.common.preview.OnActivityReenter;
+import com.h.cheng.base.common.preview.PreViewReenter;
+import com.h.cheng.base.common.preview.BasePreviewActivity;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
@@ -47,7 +46,6 @@ public class ImgListActivity extends BaseListActivity {
             @Override
             protected void convert(@NonNull BaseViewHolder helper, String item) {
                 Glide.with(context).load(item)
-                        .apply(new RequestOptions().centerCrop())
                         .into((ImageView) helper.getView(R.id.iv_img));
             }
         };
@@ -74,7 +72,7 @@ public class ImgListActivity extends BaseListActivity {
         quickAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PreviewActivity.startPreView(ImgListActivity.this, lists, view, position, reenter);
+                BasePreviewActivity.startPreView(ImgListActivity.this, lists, view, position, reenter);
             }
         });
     }

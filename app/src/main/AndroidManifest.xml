@@ -28,6 +28,9 @@
         <activity android:name=".ui.PsViewActivity" />
         <activity android:name=".ui.TabFragmentActivity" />
         <activity android:name=".ui.ImgListActivity" />
+        <activity android:name=".ui.WebDemoActivity" />
+        <activity android:name=".ui.http.HttpActivity" />
+        <activity android:name=".ui.PickActivity" />
     </application>
 
 </manifest>

@@ -19,13 +19,11 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
  */
 public abstract class BaseListActivity<P extends BasePresenter> extends BaseActivity<AcBaseListBinding, P> {
 
-
     /**
      * 生成 adpater
      *
      * @return BaseQuickAdapter
      */
-
     public abstract BaseQuickAdapter<?, BaseViewHolder> getAdapter();
 
     /**

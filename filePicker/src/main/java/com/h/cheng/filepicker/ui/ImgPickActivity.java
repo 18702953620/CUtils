@@ -5,7 +5,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -64,12 +63,12 @@ public class ImgPickActivity extends BasePickActivity<NormalFile> {
         binding.rvFilePick.setLayoutManager(new GridLayoutManager(context, spanCount));
         binding.rvFilePick.addItemDecoration(new SpaceDecoration(5, getValuesColor(R.color.color_333333)));
         binding.rvFilePick.setAdapter(fileAdapter);
-
+        //防止闪烁
         if (binding.rvFilePick.getItemAnimator() != null) {
             binding.rvFilePick.getItemAnimator().setChangeDuration(0);
         }
 
-
+        //加载数据
         PsPickManager.getImages(this, new FilterResultCallback<NormalFile>() {
             @Override
             public void onResult(List<Directory<NormalFile>> list) {
@@ -90,9 +89,13 @@ public class ImgPickActivity extends BasePickActivity<NormalFile> {
         }
 
         for (NormalFile file : selectedList) {
-            int index = list.indexOf(file);
-            if (index != -1) {
-                list.get(index).setSelected(true);
+            for (NormalFile f : list) {
+                if (f.equals(file)) {
+                    int index = list.indexOf(file);
+                    if (index != -1) {
+                        list.get(index).setSelected(true);
+                    }
+                }
             }
         }
 

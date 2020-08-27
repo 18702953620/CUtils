@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * @author ch
  * @date 2020/8/21-18:23
- * @desc
+ * @desc 选择基类
  */
 public class BasePickActivity<T extends Parcelable> extends BaseActivity<AcFilePickerBinding, BasePresenter> {
 

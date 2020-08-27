@@ -72,8 +72,6 @@ public class BaseListFragment<P extends BasePresenter> extends BaseFragment<FmBa
         if (decoration != null) {
             binding.rvBase.addItemDecoration(decoration);
         }
-
-
     }
 
     @Override
@@ -81,18 +79,17 @@ public class BaseListFragment<P extends BasePresenter> extends BaseFragment<FmBa
         binding.mrlBase.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                loadMore(refreshLayout);
+                loadMore();
                 if (callback != null) {
-                    callback.loadMore(refreshLayout);
+                    callback.loadMore();
                 }
-
             }
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refresh(refreshLayout);
+                refresh();
                 if (callback != null) {
-                    callback.refresh(refreshLayout);
+                    callback.refresh();
                 }
             }
         });
@@ -115,26 +112,22 @@ public class BaseListFragment<P extends BasePresenter> extends BaseFragment<FmBa
         if (getUserVisibleHint()) {
             if (callback != null && !isLoadData) {
                 isLoadData = true;
-                callback.refresh(binding.mrlBase);
+                callback.refresh();
             }
         }
     }
 
     /**
      * 刷新
-     *
-     * @param refreshLayout refreshLayout
      */
-    protected void refresh(RefreshLayout refreshLayout) {
+    protected void refresh() {
 
     }
 
     /**
      * 更多
-     *
-     * @param refreshLayout refreshLayout
      */
-    protected void loadMore(RefreshLayout refreshLayout) {
+    protected void loadMore() {
 
     }
 
@@ -172,7 +165,6 @@ public class BaseListFragment<P extends BasePresenter> extends BaseFragment<FmBa
      */
     public void setEmptyView(@LayoutRes int res) {
         this.emptyRes = res;
-
     }
 
     /**
@@ -226,16 +218,12 @@ public class BaseListFragment<P extends BasePresenter> extends BaseFragment<FmBa
     public interface LibBaseCallback {
         /**
          * 加载更多
-         *
-         * @param t t
          */
-        void loadMore(RefreshLayout t);
+        void loadMore();
 
         /**
          * 刷新
-         *
-         * @param t t
          */
-        void refresh(RefreshLayout t);
+        void refresh();
     }
 }

@@ -20,7 +20,7 @@ import okhttp3.Response;
  * @date 2020/6/10-11:27
  * @desc
  */
-public class ObservableHttp<T> extends Flowable<T> {
+public class HttpObservable<T> extends Flowable<T> {
 
     private Call mCall;
     private OkHttpClient okClient;
@@ -28,7 +28,7 @@ public class ObservableHttp<T> extends Flowable<T> {
     private Parser<T> parser;
 
 
-    public ObservableHttp(OkHttpClient okClient, Request request, Parser<T> parser) {
+    public HttpObservable(OkHttpClient okClient, Request request, Parser<T> parser) {
         this.okClient = okClient;
         this.request = request;
         this.parser = parser;

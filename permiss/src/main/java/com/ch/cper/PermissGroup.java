@@ -181,6 +181,7 @@ public class PermissGroup {
                     }
                     break;
                 }
+                default:
             }
         }
         return textList;

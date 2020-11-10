@@ -63,6 +63,8 @@ public class ImgListActivity extends BaseListActivity {
         setTitle("大图预览");
 
         reenter = new PreViewReenter(this);
+
+        getSharedPreferences().registerOnSharedPreferenceChangeListener();
     }
 
     @Override
@@ -72,7 +74,7 @@ public class ImgListActivity extends BaseListActivity {
         quickAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                BasePreviewActivity.startPreView(ImgListActivity.this, lists, view, position, reenter);
+                BasePreviewActivity.startPreView(ImgListActivity.this, lists, view, position);
             }
         });
     }

@@ -67,9 +67,9 @@ public class ListActivity extends BaseListActivity<AppPresenter2> implements App
 
 
         PsHttp.postJson(url)
+                .addParam("time", "2020-07-31")
                 .addUrlParam("page", 2)
                 .addUrlParam("name", "郭霖")
-                .addBodyParam("time", "2020-07-31")
                 .asResponseList(ArticleModel.class)
                 .subscribe(new BaseSubscriber<List<ArticleModel>>() {
                     @Override

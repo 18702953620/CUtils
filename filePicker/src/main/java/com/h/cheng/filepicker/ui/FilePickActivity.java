@@ -22,7 +22,7 @@ import java.util.List;
  * @date 2020/8/21-13:58
  * @desc 文件选择界面
  */
-public class FilePickActivity extends BasePickActivity<NormalFile> {
+public class FilePickActivity extends BasePickActivity {
     private BaseQuickAdapter<NormalFile, BaseViewHolder> fileAdapter;
 
     @Override

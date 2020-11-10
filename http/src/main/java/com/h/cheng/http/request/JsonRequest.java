@@ -12,11 +12,10 @@ import okhttp3.RequestBody;
  * @date 2020/8/10-10:44
  * @desc json
  */
-public class JsonRequest extends BaseRequest {
+public class JsonRequest extends PostRequest {
 
     public JsonRequest(String url) {
-        this.url = url;
-        this.method = Method.POST;
+        super(url);
     }
 
     @Override

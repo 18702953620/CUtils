@@ -3,10 +3,9 @@ package com.h.cheng.http;
 import android.util.Log;
 
 import com.h.cheng.http.request.FileRequest;
-import com.h.cheng.http.request.FormRequest;
 import com.h.cheng.http.request.GetRequest;
 import com.h.cheng.http.request.JsonRequest;
-import com.h.cheng.http.request.base.Method;
+import com.h.cheng.http.request.PostRequest;
 import com.h.cheng.http.utils.AppUtils;
 
 import java.io.IOException;
@@ -38,10 +37,10 @@ public class PsHttp {
      * post 请求
      *
      * @param url url
-     * @return [FormRequest]
+     * @return [PostRequest]
      */
-    public static FormRequest post(String url) {
-        return new FormRequest(url, Method.POST);
+    public static PostRequest post(String url) {
+        return new PostRequest(url);
     }
 
     /**

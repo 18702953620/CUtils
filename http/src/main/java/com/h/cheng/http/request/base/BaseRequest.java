@@ -1,7 +1,7 @@
 package com.h.cheng.http.request.base;
 
 import com.h.cheng.http.PsHttp;
-import com.h.cheng.http.callback.ObservableHttp;
+import com.h.cheng.http.callback.HttpObservable;
 import com.h.cheng.http.callback.ObservableListHttp;
 import com.h.cheng.http.parser.Parser;
 import com.h.cheng.http.parser.ResponseListParser;
@@ -39,10 +39,6 @@ public class BaseRequest implements IRequest, IHeader {
      * url 参数
      */
     protected HashMap<String, String> urlParams;
-    /**
-     * body 参数
-     */
-    protected HashMap<String, String> bodyParams;
 
     @Override
     public Headers getHeaders() {
@@ -123,21 +119,22 @@ public class BaseRequest implements IRequest, IHeader {
     }
 
     /**
-     * 添加 body 参数
+     * 添加 url 参数
      * <p>
-     * GET 请求时，该参数不会生效
-     * POST 请求时，该参数会添加在请求体重
+     * 该参数会拼接到请求链接后面
      *
-     * @param key   key
-     * @param value value
+     * @param map map
      */
-    public BaseRequest addBodyParam(String key, Object value) {
-        if (bodyParams == null) {
-            bodyParams = new HashMap<>();
+    public BaseRequest addUrlParam(HashMap<String, String> map) {
+        if (urlParams == null) {
+            urlParams = new HashMap<>();
         }
-        bodyParams.put(key, String.valueOf(value));
+        if (map != null && map.size() > 0) {
+            urlParams.putAll(map);
+        }
         return this;
     }
+
 
     /**
      * 添加 url 参数到 url
@@ -189,7 +186,7 @@ public class BaseRequest implements IRequest, IHeader {
      * @return Flowable
      */
     private <T> Flowable<T> asParser(Parser<T> parser) {
-        return new ObservableHttp<>(PsHttp.getDefaultOkHttpClient(), buildRequest(), parser).subscribeOn(Schedulers.io())
+        return new HttpObservable<>(PsHttp.getDefaultOkHttpClient(), buildRequest(), parser).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

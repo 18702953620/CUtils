@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.ch.cutils.R;
 import com.ch.cutils.databinding.ActivityMainBinding;
+import com.ch.cutils.ui.http.HttpActivity;
 import com.h.cheng.base.api.BasePresenter;
 import com.h.cheng.base.base.BaseActivity;
 
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
         binding.btnPreview.setOnClickListener(this);
         binding.btnWeb.setOnClickListener(this);
         binding.btnPick.setOnClickListener(this);
+        binding.btnHttp.setOnClickListener(this);
     }
 
     @Override
@@ -76,6 +78,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
                 break;
             case R.id.btn_pick:
                 intent.setClass(context, PickActivity.class);
+                break;
+            case R.id.btn_http:
+                intent.setClass(context, HttpActivity.class);
                 break;
 
             default:

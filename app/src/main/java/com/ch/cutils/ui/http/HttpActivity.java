@@ -1,5 +1,6 @@
 package com.ch.cutils.ui.http;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.ch.cutils.R;
@@ -42,6 +43,7 @@ public class HttpActivity extends BaseActivity<AcHttpBinding, BasePresenter> imp
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_get:
+                startActivity(new Intent(context, GetHttpActivity.class));
                 break;
             default:
         }

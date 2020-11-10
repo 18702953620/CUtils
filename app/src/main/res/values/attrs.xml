@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- ImagePickerView -->
+    <declare-styleable name="ImagePickerView">
+        <!-- 每行显示的数量-->
+        <attr name="ps_mv_spanCount" format="integer" />
+        <!-- 最大选择数量-->
+        <attr name="ps_mv_maxCount" format="integer" />
+        <!-- 添加图标-->
+        <attr name="ps_mv_add" format="reference" />
+    </declare-styleable>
+</resources>

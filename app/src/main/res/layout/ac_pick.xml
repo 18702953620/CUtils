@@ -49,6 +49,17 @@
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.ch.cutils.widget.ImagePickerView
+            android:id="@+id/pick_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ps_mv_add="@mipmap/ic_oto_camera"
+            app:ps_mv_maxCount="9"
+            app:ps_mv_spanCount="4" />
+
+
     </LinearLayout>
 </layout>

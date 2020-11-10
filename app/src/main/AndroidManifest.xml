@@ -31,6 +31,7 @@
         <activity android:name=".ui.WebDemoActivity" />
         <activity android:name=".ui.http.HttpActivity" />
         <activity android:name=".ui.PickActivity" />
+        <activity android:name=".ui.http.GetHttpActivity" />
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@ public class GetHttpActivity extends BaseActivity<AcGetHttpBinding, BasePresente
                 } else if (binding.rbPost.isChecked()) {
                     post();
                 } else if (binding.rbJson.isChecked()) {
-
+                    postJson();
                 }
 
             }
@@ -54,15 +54,32 @@ public class GetHttpActivity extends BaseActivity<AcGetHttpBinding, BasePresente
     }
 
     private void postJson() {
+        String url = "https://www.wanandroid.com/lg/collect/add/json";
 
+        PsHttp.postJson(url)
+                .addParam("title", "收藏链接" + System.currentTimeMillis())
+                .addParam("author", "001")
+                .addParam("link", "https://www.jianshu.com/p/1ed80a1b761d")
+                .asResponseList(ArticleModel.class)
+                .subscribe(new BaseSubscriber<List<ArticleModel>>() {
+                    @Override
+                    public void onSuccess(List<ArticleModel> o) {
+                        binding.tvContent.setText(JSON.toJSONString(o));
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        showToast(msg);
+                    }
+                });
     }
 
     private void post() {
         String url = "https://www.wanandroid.com/lg/collect/add/json";
         PsHttp.post(url)
-                .addBodyParam("title", "收藏链接" + System.currentTimeMillis())
-                .addBodyParam("author", "001")
-                .addBodyParam("link", "https://www.jianshu.com/p/1ed80a1b761d")
+                .addParam("title", "收藏链接" + System.currentTimeMillis())
+                .addParam("author", "001")
+                .addParam("link", "https://www.jianshu.com/p/1ed80a1b761d")
                 .asResponseList(ArticleModel.class)
                 .subscribe(new BaseSubscriber<List<ArticleModel>>() {
                     @Override

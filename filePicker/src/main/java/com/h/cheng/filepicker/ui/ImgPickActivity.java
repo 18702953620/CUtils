@@ -25,7 +25,7 @@ import java.util.List;
  * @date 2020/8/21-18:18
  * @desc 选择图片
  */
-public class ImgPickActivity extends BasePickActivity<NormalFile> {
+public class ImgPickActivity extends BasePickActivity {
 
     private BaseQuickAdapter<NormalFile, BaseViewHolder> fileAdapter;
 
@@ -44,12 +44,9 @@ public class ImgPickActivity extends BasePickActivity<NormalFile> {
                     helper.setVisible(R.id.view_shadow, false);
                     helper.setImageResource(R.id.iv_choose, R.mipmap.ic_img_uncheck);
                 }
-
-                Glide.with(context)
-                        .load(item.getPath())
-                        .apply(new RequestOptions()
-                                .override(200, 200))
-                        .into((ImageView) helper.getView(R.id.iv_img));
+                if (config != null && config.getImageLoader() != null) {
+                    config.getImageLoader().loadImage((ImageView) helper.getView(R.id.iv_img), item.getPath());
+                }
                 helper.addOnClickListener(R.id.ll_choose);
             }
         };

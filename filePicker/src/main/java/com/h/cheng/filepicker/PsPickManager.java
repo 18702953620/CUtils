@@ -10,7 +10,7 @@ import com.h.cheng.filepicker.bean.NormalFile;
 import com.h.cheng.filepicker.callback.FileLoaderCallbacks;
 import com.h.cheng.filepicker.callback.FilterResultCallback;
 import com.h.cheng.filepicker.callback.OnLoadResultCallback;
-import com.h.cheng.filepicker.config.Config;
+import com.h.cheng.filepicker.config.PickConfig;
 import com.h.cheng.filepicker.ui.FilePickActivity;
 import com.h.cheng.filepicker.ui.ImgPickActivity;
 
@@ -52,7 +52,7 @@ public class PsPickManager {
      * @param config   config
      * @param callback callback
      */
-    public static void openFilePicker(FragmentActivity activity, Config config, final OnLoadResultCallback<NormalFile> callback) {
+    public static void openFilePicker(FragmentActivity activity, PickConfig config, final OnLoadResultCallback<NormalFile> callback) {
         Intent intent = new Intent(activity, FilePickActivity.class);
         intent.putExtra(CONFIG, config);
         ResultHelper
@@ -79,7 +79,7 @@ public class PsPickManager {
      * @param config   config
      * @param callback callback
      */
-    public static void openImagePicker(FragmentActivity activity, Config config, final OnLoadResultCallback<NormalFile> callback) {
+    public static void openImagePicker(FragmentActivity activity, PickConfig config, final OnLoadResultCallback<NormalFile> callback) {
         Intent intent = new Intent(activity, ImgPickActivity.class);
         intent.putExtra(CONFIG, config);
         ResultHelper

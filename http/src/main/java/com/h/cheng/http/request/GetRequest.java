@@ -9,7 +9,6 @@ import com.h.cheng.http.request.base.Method;
  * @desc
  */
 public class GetRequest extends BaseRequest {
-
     public GetRequest(String url) {
         this.url = url;
         this.method = Method.GET;

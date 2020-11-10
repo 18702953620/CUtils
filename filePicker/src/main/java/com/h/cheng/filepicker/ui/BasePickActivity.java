@@ -1,14 +1,14 @@
 package com.h.cheng.filepicker.ui;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.View;
 
 import com.h.cheng.base.api.BasePresenter;
 import com.h.cheng.base.base.BaseActivity;
 import com.h.cheng.filepicker.PsPickManager;
 import com.h.cheng.filepicker.R;
-import com.h.cheng.filepicker.config.Config;
+import com.h.cheng.filepicker.bean.NormalFile;
+import com.h.cheng.filepicker.config.PickConfig;
 import com.h.cheng.filepicker.databinding.AcFilePickerBinding;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @date 2020/8/21-18:23
  * @desc 选择基类
  */
-public class BasePickActivity<T extends Parcelable> extends BaseActivity<AcFilePickerBinding, BasePresenter> {
+public class BasePickActivity extends BaseActivity<AcFilePickerBinding, BasePresenter> {
 
     protected String[] suffix;
     /**
@@ -32,9 +32,9 @@ public class BasePickActivity<T extends Parcelable> extends BaseActivity<AcFileP
     /**
      * 选中列表
      */
-    protected ArrayList<T> selectedList = new ArrayList<>();
+    protected ArrayList<NormalFile> selectedList = new ArrayList<>();
 
-    protected Config config;
+    protected PickConfig config;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -48,7 +48,7 @@ public class BasePickActivity<T extends Parcelable> extends BaseActivity<AcFileP
 
     @Override
     protected void initView() {
-        config = (Config) getIntent().getSerializableExtra(PsPickManager.CONFIG);
+        config = (PickConfig) getIntent().getSerializableExtra(PsPickManager.CONFIG);
         if (config != null) {
             //最大数量
             max = config.getMax();

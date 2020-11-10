@@ -187,8 +187,8 @@ public class BasePreviewActivity<P extends BasePresenter> extends BaseActivity<A
      * @param imgList  图片路径
      * @param view     view
      */
-    public static void startPreView(Activity activity, ArrayList<String> imgList, View view, OnActivityReenter reenter) {
-        startPreView(activity, imgList, view, 0, reenter);
+    public static void startPreView(Activity activity, ArrayList<String> imgList, View view) {
+        startPreView(activity, imgList, view, 0);
     }
 
     /**
@@ -199,7 +199,11 @@ public class BasePreviewActivity<P extends BasePresenter> extends BaseActivity<A
      * @param view     view
      * @param position 当前位置
      */
-    public static void startPreView(Activity activity, ArrayList<String> imgList, View view, int position, OnActivityReenter reenter) {
+    public static void startPreView(Activity activity, ArrayList<String> imgList, View view, int position) {
+        if (activity == null) {
+            return;
+        }
+
         Intent intent = new Intent(activity, BasePreviewActivity.class);
         intent.putExtra(IMG_LIST, imgList);
         intent.putExtra(IMG_POSITION, position);

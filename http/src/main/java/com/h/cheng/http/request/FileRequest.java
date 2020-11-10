@@ -1,8 +1,5 @@
 package com.h.cheng.http.request;
 
-import com.h.cheng.http.request.base.BaseRequest;
-import com.h.cheng.http.request.base.Method;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,15 +13,14 @@ import okhttp3.RequestBody;
 /**
  * @author ch
  * @date 2020/8/10-11:34
- * @desc
+ * @desc File
  */
-public class FileRequest extends BaseRequest {
+public class FileRequest extends PostRequest {
 
     private HashMap<String, List<File>> mapFile;
 
     public FileRequest(String url) {
-        this.url = url;
-        this.method = Method.POST;
+        super(url);
     }
 
     @Override
@@ -32,8 +28,8 @@ public class FileRequest extends BaseRequest {
         if (mapFile.isEmpty()) {
             //表单提交，没有文件
             FormBody.Builder bodyBuilder = new FormBody.Builder();
-            for (String key : urlParams.keySet()) {
-                bodyBuilder.addEncoded(key, urlParams.get(key) == null ? "" : urlParams.get(key));
+            for (String key : bodyParams.keySet()) {
+                bodyBuilder.addEncoded(key, bodyParams.get(key) == null ? "" : bodyParams.get(key));
             }
             return bodyBuilder.build();
         } else {

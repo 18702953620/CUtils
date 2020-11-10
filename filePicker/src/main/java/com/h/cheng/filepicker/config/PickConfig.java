@@ -1,14 +1,16 @@
 package com.h.cheng.filepicker.config;
 
+import com.h.cheng.filepicker.bean.NormalFile;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author ch
  * @date 2020/8/21-15:41
- * @desc
+ * @desc 选择器 配置
  */
-public class Config<T> implements Serializable {
+public class PickConfig implements Serializable {
     /**
      * 最大选择数
      */
@@ -46,13 +48,25 @@ public class Config<T> implements Serializable {
     /**
      * 选中的条目
      */
-    private ArrayList<T> selectList;
+    private ArrayList<NormalFile> selectList;
+    /**
+     * 图片加载器
+     */
+    private ImageLoader imageLoader;
 
-    public ArrayList<T> getSelectList() {
+    public ImageLoader getImageLoader() {
+        return imageLoader;
+    }
+
+    public void setImageLoader(ImageLoader imageLoader) {
+        this.imageLoader = imageLoader;
+    }
+
+    public ArrayList<NormalFile> getSelectList() {
         return selectList;
     }
 
-    public void setSelectList(ArrayList<T> selectList) {
+    public void setSelectList(ArrayList<NormalFile> selectList) {
         this.selectList = selectList;
     }
 

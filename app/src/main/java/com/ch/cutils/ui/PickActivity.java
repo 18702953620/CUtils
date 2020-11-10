@@ -77,6 +77,8 @@ public class PickActivity extends BaseActivity<AcPickBinding, BasePresenter> {
             }
         });
 
+        CPermission.with(context).install().start();
+
     }
 
     private void openFile() {

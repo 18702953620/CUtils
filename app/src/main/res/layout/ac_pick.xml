@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:ps_need_back="false"
-            app:ps_title="pick" />
+            app:ps_title="文件/图片选择器" />
 
         <Button
             android:id="@+id/btn_img"

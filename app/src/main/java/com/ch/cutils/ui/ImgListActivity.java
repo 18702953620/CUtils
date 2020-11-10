@@ -63,8 +63,6 @@ public class ImgListActivity extends BaseListActivity {
         setTitle("大图预览");
 
         reenter = new PreViewReenter(this);
-
-        getSharedPreferences().registerOnSharedPreferenceChangeListener();
     }
 
     @Override

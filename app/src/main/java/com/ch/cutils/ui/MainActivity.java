@@ -32,7 +32,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
         binding.btnTabs.setOnClickListener(this);
         binding.btnTabs2.setOnClickListener(this);
         binding.btnPsView.setOnClickListener(this);
-        binding.btnTabView.setOnClickListener(this);
         binding.btnSimpleFragment.setOnClickListener(this);
         binding.btnPreview.setOnClickListener(this);
         binding.btnWeb.setOnClickListener(this);
@@ -47,10 +46,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresente
             //ps
             case R.id.btn_ps_view:
                 intent.setClass(context, PsViewActivity.class);
-                break;
-            //仿美团tab
-            case R.id.btn_tab_view:
-
                 break;
             //简单列表
             case R.id.btn_simple_list:
